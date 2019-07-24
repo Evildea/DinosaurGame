@@ -1,0 +1,209 @@
+﻿  AbstractAI.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  AbstractObject.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\abstractobject.cpp(32): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\abstractobject.cpp(40): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  BehaviourManager.cpp
+  Entity.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(10): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(33): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(80): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(83): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(131): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(132): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(137): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.cpp(141): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Footstep.cpp
+  GameManager.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(92): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\gamemanager.cpp(94): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Head.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\head.cpp(53): warning C4305: 'argument': truncation from 'double' to 'float'
+  HerbiAI.cpp
+  InputManager.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\inputmanager.cpp(24): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\inputmanager.cpp(42): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\s191281\documents\github\thedinosaurgame\thegame\inputmanager.cpp(65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\s191281\documents\github\thedinosaurgame\thegame\inputmanager.cpp(71): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\s191281\documents\github\thedinosaurgame\thegame\inputmanager.cpp(72): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\s191281\documents\github\thedinosaurgame\thegame\inputmanager.cpp(73): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\s191281\documents\github\thedinosaurgame\thegame\inputmanager.cpp(74): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+c:\users\s191281\documents\github\thedinosaurgame\thegame\v2.h(9): warning C4244: 'initializing': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+  c:\users\s191281\documents\github\thedinosaurgame\thegame\v2.h(9): note: while compiling class template member function 'V2<int>::V2(void)'
+  c:\users\s191281\documents\github\thedinosaurgame\thegame\inputmanager.cpp(4): note: see reference to function template instantiation 'V2<int>::V2(void)' being compiled
+  c:\users\s191281\documents\github\thedinosaurgame\thegame\herbiai.h(10): note: see reference to class template instantiation 'V2<int>' being compiled
+c:\users\s191281\documents\github\thedinosaurgame\thegame\v2.h(9): warning C4244: 'initializing': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+  Legs.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\legs.cpp(42): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  ObjectManager.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\objectmanager.cpp(43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  PredatorAI.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\predatorai.cpp(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\predatorai.cpp(36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\predatorai.cpp(43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\predatorai.cpp(55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\predatorai.cpp(56): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\predatorai.cpp(63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\predatorai.cpp(78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  T2.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\t2.cpp(34): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\v2.h(21): warning C4244: 'return': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  c:\users\s191281\documents\github\thedinosaurgame\thegame\v2.h(21): note: while compiling class template member function 'T V2<T>::getMagnitude(void) const'
+          with
+          [
+              T=float
+          ]
+  c:\users\s191281\documents\github\thedinosaurgame\thegame\v2.h(22): note: see reference to function template instantiation 'T V2<T>::getMagnitude(void) const' being compiled
+          with
+          [
+              T=float
+          ]
+  c:\users\s191281\documents\github\thedinosaurgame\thegame\t2.h(14): note: see reference to class template instantiation 'V2<float>' being compiled
+  Tail.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\tail.cpp(6): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\tail.cpp(9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\tail.cpp(42): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\s191281\documents\github\thedinosaurgame\thegame\tail.cpp(50): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\s191281\documents\github\thedinosaurgame\thegame\tail.cpp(50): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\tail.cpp(54): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\s191281\documents\github\thedinosaurgame\thegame\tail.cpp(56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  TheGameApp.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\thegameapp.cpp(7): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Tile.cpp
+  Tree.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\tree.cpp(16): warning C4305: 'argument': truncation from 'double' to 'float'
+  UserControlled.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\usercontrolled.cpp(27): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\usercontrolled.cpp(35): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+  main.cpp
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(32): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(33): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(35): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s191281\documents\github\thedinosaurgame\thegame\entity.h(37): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  TheGame.vcxproj -> C:\Users\s191281\Documents\GitHub\TheDinosaurGame\temp\TheGame\Win32\Debug\TheGame.exe
