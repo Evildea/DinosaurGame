@@ -8,7 +8,7 @@ ObjectManager::ObjectManager()
 ObjectManager::~ObjectManager()
 {
 	// Delete all Tiles, Entities, Trees and Footsteps.
-	for (Footstep* i : m_FootstepList)
+	for (Bones* i : m_BonesList)
 		delete i;
 	for (Entity* i : m_EntityList)
 		delete i;
@@ -25,27 +25,31 @@ void ObjectManager::update(float deltaTime, V2<int> a_cameraPosition)
 		i->update(deltaTime, a_cameraPosition);
 	
 	for (Entity* i : m_EntityList)
-		i->update(deltaTime, a_cameraPosition);
+	{
+		if (i->getHealth() <= 1)
+		{
+			m_EntityList.erase(std::find(m_EntityList.begin(), m_EntityList.end(), i));
+			addBones("bones", i->getX(), i->getY());
+			delete i;
+		}
+		else
+			i->update(deltaTime, a_cameraPosition);
+	}
 
 	for (Tree* i : m_TreeList)
 		i->update(deltaTime, a_cameraPosition), i->setTransparency(1);
 
-	for (Footstep* i : m_FootstepList)
+	for (Bones* i : m_BonesList)
 		i->update(deltaTime, a_cameraPosition);
 
-	// Update the transparency of the Trees.
+	// Update the transparency of the Trees based on the nearest dinosaur.
 	for (Tree* i : m_TreeList)
 	{
 		for (Entity* j : m_EntityList)
 		{
 			float distance = sqrt(pow(j->getX() - i->getX(), 2) + pow(j->getY() - i->getY(), 2));
 			if (distance < 100)
-				i->setTransparency((1 - (1 / (distance / 50))) + .1 );
-			//if (distance < 30)
-			//{
-			//	m_TreeList.erase(std::find(m_TreeList.begin(), m_TreeList.end(), i));
-			//	delete i;
-			//}
+				i->setTransparency((1 - (50 / distance)) + .5);
 		}
 	}
 
@@ -63,7 +67,7 @@ void ObjectManager::draw(aie::Renderer2D * a_renderer)
 	for (Tree* i : m_TreeList)
 		i->draw(a_renderer);
 
-	for (Footstep* i : m_FootstepList)
+	for (Bones* i : m_BonesList)
 		i->draw(a_renderer);
 }
 
@@ -72,13 +76,14 @@ void ObjectManager::addResourceManager(ResourceManager * a_resourceManager)
 	m_resourceManager = a_resourceManager;
 }
 
-void ObjectManager::addEntity(char a_textureGameName[], float x, float y, float r, float g, float b, float r1, float g1, float b1)
+void ObjectManager::addEntity(char a_textureGameName[], char a_scarTextureGameName[], float x, float y, float r, float g, float b, float r1, float g1, float b1)
 {
 	// Add a new Entity (dinosaur) to the game.
 	m_EntityList.push_back(new Entity);
 	Entity* temp = m_EntityList.back();
 
 	temp->addSprite(m_resourceManager, a_textureGameName);
+	temp->addScarSprite(m_resourceManager, a_scarTextureGameName);
 	temp->setPosition(x, y);
 	temp->setTailColour(r, g, b);
 	temp->setTailSpotColour(r1, g1, b1);
@@ -110,11 +115,11 @@ void ObjectManager::addTile(CollisionType a_collision, char a_textureGameName[],
 		m_waterTileList.push_back(temp);
 }
 
-void ObjectManager::addFootstep(char a_textureGameName[], float x, float y)
+void ObjectManager::addBones(char a_textureGameName[], float x, float y)
 {
 	// Add a set of Footsteps to the game.
-	m_FootstepList.push_back(new Footstep);
-	Footstep* temp = m_FootstepList.back();
+	m_BonesList.push_back(new Bones);
+	Bones* temp = m_BonesList.back();
 
 	temp->addSprite(m_resourceManager, a_textureGameName);
 	temp->setPosition(x, y);

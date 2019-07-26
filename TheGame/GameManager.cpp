@@ -11,11 +11,14 @@ GameManager::GameManager()
 	m_objectManager->addResourceManager(m_resourceManager);
 	m_inputManager->addObjectManager(m_objectManager);
 
-	// Generate the main game objects.
+	// Generate the textures.
+	m_resourceManager->addTexture("../bin/textures/Bones.png", "bones");
 	m_resourceManager->addTexture("../bin/textures/DinoBody.png", "pred");
+	m_resourceManager->addTexture("../bin/textures/DinoBodyScar.png", "predscar");
 	m_resourceManager->addTexture("../bin/textures/DinoHead.png", "predhead");
 	m_resourceManager->addTexture("../bin/textures/DinoLegs.png", "predlegs");
 	m_resourceManager->addTexture("../bin/textures/DinoBody2.png", "herbi");
+	m_resourceManager->addTexture("../bin/textures/DinoBody2Scar.png", "herbiscar");
 	m_resourceManager->addTexture("../bin/textures/DinoHead2.png", "herbihead");
 	m_resourceManager->addTexture("../bin/textures/DinoLegs2.png", "herbilegs");
 	m_resourceManager->addTexture("../bin/textures/Trunk.png", "trunk");
@@ -76,7 +79,7 @@ GameManager::GameManager()
 			{
 				currentTile = m_objectManager->getTileAtPosition(i * 100, j * 100);
 				if (!currentTile->getColide())
-					addEntity("pred", "predhead", "predlegs", i * 100, j * 100, 130, 134, 95, 95, 101, 82);
+					addEntity("pred", "predhead", "predlegs", "predscar", i * 100, j * 100, 130, 134, 95, 95, 101, 82);
 			}
 		}
 	}
@@ -91,7 +94,7 @@ GameManager::GameManager()
 			{
 				currentTile = m_objectManager->getTileAtPosition(i * 100, j * 100);
 				if (!currentTile->getColide())
-					addEntity("herbi", "herbihead", "herbilegs", i * 100, j * 100, 84, 139, 145, 76, 98, 109);
+					addEntity("herbi", "herbihead", "herbilegs", "herbiscar", i * 100, j * 100, 84, 139, 145, 76, 98, 109);
 			}
 		}
 	}
@@ -116,10 +119,10 @@ void GameManager::draw(aie::Renderer2D* a_renderer)
 	m_inputManager->draw(a_renderer);
 }
 
-void GameManager::addEntity(char a_PrimaryTexture[], char a_SecondaryTexture[], char a_ThirdTexture[], float x, float y, float r, float g, float b, float r1, float g1, float b1)
+void GameManager::addEntity(char a_PrimaryTexture[], char a_SecondaryTexture[], char a_ThirdTexture[], char a_scarTexture[], float x, float y, float r, float g, float b, float r1, float g1, float b1)
 {
 
-	m_objectManager->addEntity(a_PrimaryTexture, x, y, r, g, b, r1, g1, b1);
+	m_objectManager->addEntity(a_PrimaryTexture, a_scarTexture, x, y, r, g, b, r1, g1, b1);
 	m_objectManager->addHead(a_SecondaryTexture);
 	m_objectManager->addLegs(a_ThirdTexture);
 }

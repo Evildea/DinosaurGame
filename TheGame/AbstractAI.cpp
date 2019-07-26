@@ -44,7 +44,7 @@ void AbstractAI::FollowPath(std::vector<Tile*> &a_path, float deltaTime)
 	float dif = sqrt(xdif * xdif + ydif * ydif);
 
 	// If the dinosaur is within range of the first target, then point towards the second target.
-	if (dif < 30 && a_path.size() > 1)
+	if (dif < 50 && a_path.size() > 1)
 	{
 		a_path.erase(a_path.begin());
 		TargetPosition = a_path[0]->getPosition();

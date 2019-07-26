@@ -7,6 +7,7 @@ AbstractObject::AbstractObject()
 	m_selectedStatus	= false;
 	m_velocity			= { 0.0f,0.0f };
 	m_depth				= 0.0f;
+	m_scarSprite		= nullptr;
 }
 
 
@@ -33,11 +34,20 @@ void AbstractObject::draw(aie::Renderer2D * a_renderer)
 	}
 
 	// Draw the sprite of the object translated and transformed accordingly.
+	// Additionally, if a scar texture is available draw that if the entity is hurt.
 	M3<float> t;
 	t = m_transform + m_position;
-
 	a_renderer->setRenderColour(1, 1, 1, 1);
-	a_renderer->drawSpriteTransformed3x3(m_sprite, (float*)t, m_sprite->getWidth(), m_sprite->getHeight(), m_depth);
+
+	if (m_scarSprite == nullptr)
+		a_renderer->drawSpriteTransformed3x3(m_sprite, (float*)t, m_sprite->getWidth(), m_sprite->getHeight(), m_depth);
+	else
+	{
+		if (m_health > 30)
+			a_renderer->drawSpriteTransformed3x3(m_sprite, (float*)t, m_sprite->getWidth(), m_sprite->getHeight(), m_depth);
+		else
+			a_renderer->drawSpriteTransformed3x3(m_scarSprite, (float*)t, m_sprite->getWidth(), m_sprite->getHeight(), m_depth);
+	}
 
 	// Draw any custom draw functions.
 	customDraw(a_renderer);
@@ -46,6 +56,11 @@ void AbstractObject::draw(aie::Renderer2D * a_renderer)
 void AbstractObject::addSprite(ResourceManager * a_resourceManager, char a_textureGameName[])
 {
 	m_sprite = a_resourceManager->getTexture(a_textureGameName);
+}
+
+void AbstractObject::addScarSprite(ResourceManager * a_resourceManager, char a_textureGameName[])
+{
+	m_scarSprite = a_resourceManager->getTexture(a_textureGameName);
 }
 
 void AbstractObject::setPosition(float x, float y)

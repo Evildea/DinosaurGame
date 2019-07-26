@@ -10,7 +10,7 @@ private:
 	Tail*		m_tail;
 	Head*		m_head;
 	Legs*		m_legs;
-	float		m_health, m_thirst, m_hunger, m_tiredness;
+	float		m_thirst, m_hunger, m_tiredness;
 	V2<float>	m_previousPosition;
 	V2<float>	m_previousDif;
 

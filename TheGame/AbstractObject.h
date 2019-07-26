@@ -14,12 +14,14 @@ protected:
 	ObjectManager*				m_objectManager;
 	BehaviourManager*			m_behaviourManager;
 	aie::Texture*				m_sprite;
+	aie::Texture*				m_scarSprite;
 	M3<float>					m_transform;
 	V2<float>					m_position;
 	V2<float>					m_velocity;
 	V2<float>					m_target;
 	bool						m_selectedStatus;
 	float						m_depth;
+	float						m_health;			// Represents health. It is used by Entity class but needs to be accessed by the AbstractObject.
 
 public:
 	AbstractObject();
@@ -32,6 +34,7 @@ public:
 	void draw(aie::Renderer2D* a_renderer);
 
 	void addSprite(ResourceManager* a_resourceManager, char a_textureGameName[]);
+	void addScarSprite(ResourceManager* a_resourceManager, char a_textureGameName[]);
 
 	void setPosition(float x, float y);
 	void setVelocity(float x, float y);

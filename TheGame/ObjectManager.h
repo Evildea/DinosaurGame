@@ -1,7 +1,7 @@
 #pragma once
 #include "ResourceManager.h"
 #include "Renderer2D.h"
-#include "Footstep.h"
+#include "Bones.h"
 #include <algorithm>
 #include "Entity.h"
 #include "Tree.h"
@@ -14,7 +14,7 @@ class ObjectManager
 private:
 	std::vector<Entity*>	m_EntityList;		// List of Dinosaurs in the game.
 	std::vector<Tree*>		m_TreeList;			// List of Trees in the game.
-	std::vector<Footstep*>	m_FootstepList;		// List of Footsteps in the game.
+	std::vector<Bones*>		m_BonesList;		// List of Bones in the game.
 	std::vector<Tile*>		m_TileList;			// List of Tiles in the game.
 	std::vector<Tile*>		m_waterTileList;	// List of Water tiles in the game.
 	ResourceManager*		m_resourceManager;	// Pointer to the ResourceManager so the ObjectManager can access resources.
@@ -30,10 +30,10 @@ public:
 	void addResourceManager(ResourceManager * a_resourceManager);
 
 	// These functions allow the GameManager to add different object types to the game.
-	void addEntity(char a_textureGameName[], float x, float y, float r, float g, float b, float r1, float g1, float b1);
+	void addEntity(char a_textureGameName[], char a_scarTextureGameName[], float x, float y, float r, float g, float b, float r1, float g1, float b1);
 	void addTree(char a_textureGameName[], float x, float y);
 	void addTile(CollisionType a_collision, char a_textureGameName[], float x, float y);
-	void addFootstep(char a_textureGameName[], float x, float y);
+	void addBones(char a_textureGameName[], float x, float y);
 
 	// These functions allow the GameManager to add components to the different objects in the game.
 	void addHead(char a_textureGameName[]);
