@@ -1,4 +1,5 @@
 #include "Tail.h"
+#include "Entity.h"
 
 Tail::Tail()
 {
@@ -18,17 +19,21 @@ Tail::~Tail()
 
 void Tail::update(V2<float> a_position)
 {
-	// Update the tail's spinal position.
-	for (int i = 0; i < m_TAILLENGTH; i++)
+	// Update the tail's spinal position if the body of the dinosaur is moving.
+	float distanceTravelled = m_owner->getVelocityLength();
+	if (distanceTravelled > 3.0)
 	{
-		if (m_tailList[i].x != m_tailList[i + 1].x && m_tailList[i].y != m_tailList[i + 1].y)
+		for (int i = 0; i < m_TAILLENGTH; i++)
 		{
-			m_tailList[i].x = m_tailList[i + 1].x;
-			m_tailList[i].y = m_tailList[i + 1].y;
+			if (m_tailList[i].x != m_tailList[i + 1].x && m_tailList[i].y != m_tailList[i + 1].y)
+			{
+				m_tailList[i].x = m_tailList[i + 1].x;
+				m_tailList[i].y = m_tailList[i + 1].y;
+			}
 		}
+		m_tailList[m_TAILLENGTH].x = a_position.x;
+		m_tailList[m_TAILLENGTH].y = a_position.y;
 	}
-	m_tailList[m_TAILLENGTH].x = a_position.x;
-	m_tailList[m_TAILLENGTH].y = a_position.y;
 }
 
 void Tail::draw(aie::Renderer2D * a_renderer, V2<float> a_rotation)
@@ -71,4 +76,9 @@ void Tail::setTailSpotColour(float _r, float _g, float _b)
 	r1 = _r / 255;
 	g1 = _g / 255;
 	b1 = _b / 255;
+}
+
+void Tail::addEntity(Entity * a_entity)
+{
+	m_owner = a_entity;
 }

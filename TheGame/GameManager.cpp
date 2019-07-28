@@ -12,22 +12,22 @@ GameManager::GameManager()
 	m_inputManager->addObjectManager(m_objectManager);
 
 	// Generate the textures.
-	m_resourceManager->addTexture("../bin/textures/Bones.png", "bones");
-	m_resourceManager->addTexture("../bin/textures/DinoBody.png", "pred");
-	m_resourceManager->addTexture("../bin/textures/DinoBodyScar.png", "predscar");
-	m_resourceManager->addTexture("../bin/textures/DinoHead.png", "predhead");
-	m_resourceManager->addTexture("../bin/textures/DinoLegs.png", "predlegs");
-	m_resourceManager->addTexture("../bin/textures/DinoBody2.png", "herbi");
-	m_resourceManager->addTexture("../bin/textures/DinoBody2Scar.png", "herbiscar");
-	m_resourceManager->addTexture("../bin/textures/DinoHead2.png", "herbihead");
-	m_resourceManager->addTexture("../bin/textures/DinoLegs2.png", "herbilegs");
-	m_resourceManager->addTexture("../bin/textures/Trunk.png", "trunk");
-	m_resourceManager->addTexture("../bin/textures/Leaves.png", "leaves");
-	m_resourceManager->addTexture("../bin/textures/Grass.png", "grass");
-	m_resourceManager->addTexture("../bin/textures/Water.png", "water");
-	m_resourceManager->addTexture("../bin/textures/Rock01.png", "rock01");
-	m_resourceManager->addTexture("../bin/textures/Rock02.png", "rock02");
-	m_resourceManager->addTexture("../bin/textures/Rock03.png", "rock03");
+	m_resourceManager->addTexture("../bin/textures/Bones.png",			"bones");
+	m_resourceManager->addTexture("../bin/textures/DinoBody.png",		"pred");
+	m_resourceManager->addTexture("../bin/textures/DinoBodyScar.png",	"predscar");
+	m_resourceManager->addTexture("../bin/textures/DinoHead.png",		"predhead");
+	m_resourceManager->addTexture("../bin/textures/DinoLegs.png",		"predlegs");
+	m_resourceManager->addTexture("../bin/textures/DinoBody2.png",		"herbi");
+	m_resourceManager->addTexture("../bin/textures/DinoBody2Scar.png",	"herbiscar");
+	m_resourceManager->addTexture("../bin/textures/DinoHead2.png",		"herbihead");
+	m_resourceManager->addTexture("../bin/textures/DinoLegs2.png",		"herbilegs");
+	m_resourceManager->addTexture("../bin/textures/Trunk.png",			"trunk");
+	m_resourceManager->addTexture("../bin/textures/Leaves.png",			"leaves");
+	m_resourceManager->addTexture("../bin/textures/Grass.png",			"grass");
+	m_resourceManager->addTexture("../bin/textures/Water.png",			"water");
+	m_resourceManager->addTexture("../bin/textures/Rock01.png",			"rock01");
+	m_resourceManager->addTexture("../bin/textures/Rock02.png",			"rock02");
+	m_resourceManager->addTexture("../bin/textures/Rock03.png",			"rock03");
 
 
 	// Randomly generate all map tiles.
@@ -35,12 +35,12 @@ GameManager::GameManager()
 	{
 		for (int j = 0; j < g_MAPHEIGHT; j++)
 		{
-			int range01 = 100 - g_ROCKDENSITY;
+			int range01 = 1000 - g_ROCKDENSITY;
 			int range02 = range01 - g_ROCKDENSITY;
 			int range03 = range02 - g_ROCKDENSITY;
 			int range04 = range03 - g_WATERDENSITY;
 
-			int random = rand() % 100;
+			int random = rand() % 1000;
 			if (random <= range04)
 				addTile(NONE, "grass", i * 100, j * 100);
 			if (random > range04  && random <= range03)
@@ -62,7 +62,7 @@ GameManager::GameManager()
 	{
 		for (int j = 0; j < g_MAPHEIGHT; j++)
 		{
-			int random = rand() % 100;
+			int random = rand() % 1000;
 			if (random < g_TREEDENSITY)
 				addTree("trunk", "leaves", (i * 100) + 30, (j * 100) + 30);
 		}
@@ -70,32 +70,33 @@ GameManager::GameManager()
 
 	// Randomly generate Predators on Tiles that aren't SOLID.
 	Tile * currentTile;
-	for (int i = 0; i < g_MAPWIDTH; i++)
+	int count = 0;
+
+	while (count < g_PREDATORCOUNT)
 	{
-		for (int j = 0; j < g_MAPHEIGHT; j++)
+		int randX = (rand() % g_MAPWIDTH) * 100;
+		int randY = (rand() % g_MAPHEIGHT) * 100;
+
+		currentTile = m_objectManager->getTileAtPosition(randX, randY);
+		if (!currentTile->getColide())
 		{
-			int random = rand() % 100;
-			if (random <= g_PREDATORDENSITY)
-			{
-				currentTile = m_objectManager->getTileAtPosition(i * 100, j * 100);
-				if (!currentTile->getColide())
-					addEntity("pred", "predhead", "predlegs", "predscar", i * 100, j * 100, 130, 134, 95, 95, 101, 82);
-			}
+			addEntity("pred", "predhead", "predlegs", "predscar", PredatorControlledAI, randX, randY, 130, 134, 95, 95, 101, 82);
+			count++;
 		}
 	}
 
-	// Randomly generate Herbis on Tiles that aren't SOLID.
-	for (int i = 0; i < g_MAPWIDTH; i++)
+	// Randomly generate Herbivores on Tiles that aren't SOLID.
+	count = 0;
+	while (count < g_HERBICOUNT)
 	{
-		for (int j = 0; j < g_MAPHEIGHT; j++)
+		int randX = (rand() % g_MAPWIDTH) * 100;
+		int randY = (rand() % g_MAPHEIGHT) * 100;
+
+		currentTile = m_objectManager->getTileAtPosition(randX, randY);
+		if (!currentTile->getColide())
 		{
-			int random = rand() % 100;
-			if (random <= g_HERBIDENSITY)
-			{
-				currentTile = m_objectManager->getTileAtPosition(i * 100, j * 100);
-				if (!currentTile->getColide())
-					addEntity("herbi", "herbihead", "herbilegs", "herbiscar", i * 100, j * 100, 84, 139, 145, 76, 98, 109);
-			}
+			addEntity("herbi", "herbihead", "herbilegs", "herbiscar", HerbiControlledAI, randX, randY, 84, 139, 145, 76, 98, 109);
+			count++;
 		}
 	}
 }
@@ -119,10 +120,10 @@ void GameManager::draw(aie::Renderer2D* a_renderer)
 	m_inputManager->draw(a_renderer);
 }
 
-void GameManager::addEntity(char a_PrimaryTexture[], char a_SecondaryTexture[], char a_ThirdTexture[], char a_scarTexture[], float x, float y, float r, float g, float b, float r1, float g1, float b1)
+void GameManager::addEntity(char a_PrimaryTexture[], char a_SecondaryTexture[], char a_ThirdTexture[], char a_scarTexture[], BehaviourType a_dinosaurRole, float x, float y, float r, float g, float b, float r1, float g1, float b1)
 {
 
-	m_objectManager->addEntity(a_PrimaryTexture, a_scarTexture, x, y, r, g, b, r1, g1, b1);
+	m_objectManager->addEntity(a_PrimaryTexture, a_scarTexture, a_dinosaurRole, x, y, r, g, b, r1, g1, b1);
 	m_objectManager->addHead(a_SecondaryTexture);
 	m_objectManager->addLegs(a_ThirdTexture);
 }

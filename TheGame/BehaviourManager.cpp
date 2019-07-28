@@ -13,7 +13,7 @@ BehaviourManager::~BehaviourManager()
 
 void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
 {
-	
+
 	if (a_behaviour == UserControlledAI)
 	{
 		if (m_behaviourType != nullptr)
@@ -56,7 +56,8 @@ void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
 			m_behaviourType = new HerbiAI;
 	}
 
-	m_behaviourType->setOwner(a_owner);
+	if (m_behaviourType != nullptr)
+		m_behaviourType->setOwner(a_owner);
 }
 
 void BehaviourManager::update(float deltaTime, V2<int> a_cameraPosition)

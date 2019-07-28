@@ -30,7 +30,7 @@ public:
 	void addResourceManager(ResourceManager * a_resourceManager);
 
 	// These functions allow the GameManager to add different object types to the game.
-	void addEntity(char a_textureGameName[], char a_scarTextureGameName[], float x, float y, float r, float g, float b, float r1, float g1, float b1);
+	void addEntity(char a_textureGameName[], char a_scarTextureGameName[], BehaviourType a_dinosaurRole, float x, float y, float r, float g, float b, float r1, float g1, float b1);
 	void addTree(char a_textureGameName[], float x, float y);
 	void addTile(CollisionType a_collision, char a_textureGameName[], float x, float y);
 	void addBones(char a_textureGameName[], float x, float y);
@@ -43,17 +43,21 @@ public:
 	// This function selects all objects within a specific area.
 	bool setSelected(float x1, float y1, float x2, float y2);
 
-	// This function generates links between all the tiles. This is used by Dijkstra's algorithm.
+	// These functions check Tile and Object collisions.
+	Tile* getTileAtPosition(float x, float y);	// Returns the Tile at a specific location.
+	Tile* getWaterTile(float x, float y);		// Returns the Water Tile at a specific location.
+	Tile* getTree(float x, float y);			// Returns a Tree at a specific location.
+	Entity* getClosestEntity(BehaviourType a_dinosaurRole, float x, float y, Entity* a_self);
+
+	bool tileCheck(Tile* a_target);				// Returns True if a Tile is a NULLPTR or SOLID.
+
+	// This function generates edge links between all the tiles. This is for Dijkstra's algorithm.
 	void LinkTiles();
 
-	// This function is used by LinkTiles to check if a link between two tiles should be created.
-	bool CheckTile(Tile * a_tile, V2<float> a_position, float x, float y);
+	// This function is used by LinkTiles to check if a link between two tiles should exist.
+	bool checkTileColide(Tile * a_tile, V2<float> a_position, float x, float y);
 
-	// This function creates a route between two tiles using Dijkstra's Algo
-	Tile* getTileAtPosition(float x, float y);
-	Tile* getWaterTile(float x, float y);
-	Tile* getTree(float x, float y);
-
+	// These functions generate routes between tiles. This is Dijkstra's Algorithm.
 	void CreateRoute(float x1, float y1, float x2, float y2, std::vector<Tile*> &a_list);
 	bool checkList(std::vector<Tile*> a_list, Tile* a_target);
 

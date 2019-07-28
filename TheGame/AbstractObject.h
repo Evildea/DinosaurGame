@@ -50,6 +50,7 @@ public:
 	virtual int getThirst() { return 0; };
 	virtual int getHealth() { return 0; };
 	virtual int getHunger() { return 0; };
+	virtual BehaviourType getBehaviourType() { return HerbiControlledAI; };
 	virtual void setHealth(int a_health) {};
 	virtual void setThirst(int a_thirst) {};
 	virtual void setHunger(int a_hunger) {};

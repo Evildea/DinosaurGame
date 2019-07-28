@@ -4,14 +4,14 @@
 #include "UserControlled.h"
 #include "Renderer2D.h"
 
-enum BehaviourType { UserControlledAI, PredatorControlledAI, HerbiControlledAI };
+enum BehaviourType { UserControlledAI, PredatorControlledAI, HerbiControlledAI, NoAI };
 
 class AbstractObject;
 
 class BehaviourManager
 {
 private:
-	AbstractAI* m_behaviourType;
+	AbstractAI*		m_behaviourType;
 
 public:
 	BehaviourManager();

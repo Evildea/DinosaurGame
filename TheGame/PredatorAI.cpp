@@ -32,8 +32,8 @@ void PredatorAI::update(float deltaTime, V2<int> a_cameraPosition)
 		// If thirsty pick a water hole near the target.
 		if (m_owner->getThirst() < 30)
 		{
-			targetX = m_owner->getX() + (rand() % 3) * 100;
-			targetY = m_owner->getY() + (rand() % 3) * 100;
+			targetX = m_owner->getX();
+			targetY = m_owner->getY();
 
 			if (targetX > g_MAPWIDTH * 100)
 				targetX = g_MAPWIDTH;
@@ -52,8 +52,8 @@ void PredatorAI::update(float deltaTime, V2<int> a_cameraPosition)
 		// If hungry pick a random tree near the target.
 		if (m_owner->getHunger() < 30 && pickedTarget == false)
 		{
-			targetX = m_owner->getX() + (rand() % 3) * 100;
-			targetY = m_owner->getY() + (rand() % 3) * 100;
+			targetX = m_owner->getX();
+			targetY = m_owner->getY();
 
 			if (targetX > g_MAPWIDTH * 100)
 				targetX = g_MAPWIDTH;
@@ -121,6 +121,7 @@ void PredatorAI::update(float deltaTime, V2<int> a_cameraPosition)
 		if (timer > 10)
 		{
 			m_owner->setThirst(100);
+			m_owner->setHealth(m_owner->getHealth() + 10);
 			timer = 0.0f;
 			m_state = PICKTARGET;
 		}
@@ -135,6 +136,7 @@ void PredatorAI::update(float deltaTime, V2<int> a_cameraPosition)
 		if (timer > 10)
 		{
 			m_owner->setHunger(100);
+			m_owner->setHealth(m_owner->getHealth() + 10);
 			timer = 0.0f;
 			m_state = PICKTARGET;
 		}

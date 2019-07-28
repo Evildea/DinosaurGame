@@ -76,7 +76,7 @@ void ObjectManager::addResourceManager(ResourceManager * a_resourceManager)
 	m_resourceManager = a_resourceManager;
 }
 
-void ObjectManager::addEntity(char a_textureGameName[], char a_scarTextureGameName[], float x, float y, float r, float g, float b, float r1, float g1, float b1)
+void ObjectManager::addEntity(char a_textureGameName[], char a_scarTextureGameName[], BehaviourType a_dinosaurRole, float x, float y, float r, float g, float b, float r1, float g1, float b1)
 {
 	// Add a new Entity (dinosaur) to the game.
 	m_EntityList.push_back(new Entity);
@@ -84,6 +84,7 @@ void ObjectManager::addEntity(char a_textureGameName[], char a_scarTextureGameNa
 
 	temp->addSprite(m_resourceManager, a_textureGameName);
 	temp->addScarSprite(m_resourceManager, a_scarTextureGameName);
+	temp->setSpeciesType(a_dinosaurRole);
 	temp->setPosition(x, y);
 	temp->setTailColour(r, g, b);
 	temp->setTailSpotColour(r1, g1, b1);
@@ -178,35 +179,35 @@ void ObjectManager::LinkTiles()
 					V2<float> childPosition = j->getPosition();
 
 					// check one to the left of the current J.
-					if (CheckTile(j, parentPosition, childPosition.x - 100, childPosition.y))
+					if (checkTileColide(j, parentPosition, childPosition.x - 100, childPosition.y))
 						parentTile->addEdge(j, 100);
 
 					// check one to the right of the current J.
-					if (CheckTile(j, parentPosition, childPosition.x + 100, childPosition.y))
+					if (checkTileColide(j, parentPosition, childPosition.x + 100, childPosition.y))
 						parentTile->addEdge(j, 100);
 
 					// check one to the top of the current J.
-					if (CheckTile(j, parentPosition, childPosition.x, childPosition.y + 100))
+					if (checkTileColide(j, parentPosition, childPosition.x, childPosition.y + 100))
 						parentTile->addEdge(j, 100);
 
 					// check one to the bottom of the current J.
-					if (CheckTile(j, parentPosition, childPosition.x, childPosition.y - 100))
+					if (checkTileColide(j, parentPosition, childPosition.x, childPosition.y - 100))
 						parentTile->addEdge(j, 100);
 
 					// check one to the top left of the current J.
-					if (CheckTile(j, parentPosition, childPosition.x - 100, childPosition.y + 100))
+					if (checkTileColide(j, parentPosition, childPosition.x - 100, childPosition.y + 100))
 						parentTile->addEdge(j, 150);
 
 					// check one to the top right of the current J.
-					if (CheckTile(j, parentPosition, childPosition.x + 100, childPosition.y + 100))
+					if (checkTileColide(j, parentPosition, childPosition.x + 100, childPosition.y + 100))
 						parentTile->addEdge(j, 150);
 
 					// check one to the bottom left of the current J.
-					if (CheckTile(j, parentPosition, childPosition.x - 100, childPosition.y - 100))
+					if (checkTileColide(j, parentPosition, childPosition.x - 100, childPosition.y - 100))
 						parentTile->addEdge(j, 150);
 
 					// check one to the bottom right of the current J.
-					if (CheckTile(j, parentPosition, childPosition.x + 100, childPosition.y - 100))
+					if (checkTileColide(j, parentPosition, childPosition.x + 100, childPosition.y - 100))
 						parentTile->addEdge(j, 150);
 
 				}
@@ -215,7 +216,7 @@ void ObjectManager::LinkTiles()
 	}
 }
 
-bool ObjectManager::CheckTile(Tile * a_tile, V2<float> a_position, float x, float y)
+bool ObjectManager::checkTileColide(Tile * a_tile, V2<float> a_position, float x, float y)
 {
 	bool colide = a_tile->getColide();
 	return (a_position.x == x && a_position.y == y && colide == false) ? true : false;
@@ -235,6 +236,13 @@ Tile * ObjectManager::getTileAtPosition(float x, float y)
 		}
 	}
 	return result;
+}
+
+bool ObjectManager::tileCheck(Tile* a_target)
+{
+	if (a_target == nullptr)
+		return true;
+	return a_target->getColide();
 }
 
 Tile * ObjectManager::getWaterTile(float x, float y)
@@ -280,10 +288,42 @@ Tile * ObjectManager::getTree(float x, float y)
 			{
 				result = temp;
 				predif = dif;
+
+				// If a target tree is found within 300 pixels go to it instead of wasting resources
+				// trying to source out a tree that is slightly closer.
+				if (predif.getMagnitude() < 300.0f)
+					break;
 			}
 		}
 	}
 	return result;
+}
+
+Entity * ObjectManager::getClosestEntity(BehaviourType a_dinosaurRole, float x, float y, Entity * a_self)
+{
+
+	V2<float> target;
+	target.x = x; target.y = y;
+	V2<float> predif = { 100000, 10000 };
+
+	Entity * result = nullptr;
+
+	for (Entity* i : m_EntityList)
+	{
+		if (i != a_self && i->getBehaviourType() == a_dinosaurRole)
+		{
+			V2<float> pos = i->getPosition();
+			V2<float> dif = pos - target;
+
+			if (dif.getMagnitude() < predif.getMagnitude())
+			{
+				result = i;
+				predif = dif;
+			}
+		}
+	}
+	return result;
+
 }
 
 void ObjectManager::CreateRoute(float x1, float y1, float x2, float y2, std::vector<Tile*> &a_list)
@@ -295,21 +335,17 @@ void ObjectManager::CreateRoute(float x1, float y1, float x2, float y2, std::vec
 
 	// Check that the StartTile is a valid tile otherwise pick another tile around it.
 	// This fixes a bug that appears when swapping between AI modes.
-	if (startTile->getColide())
+	if (tileCheck(startTile))
 		startTile = getTileAtPosition(x1 - 100, y1);
-	if (startTile->getColide())
+	if (tileCheck(startTile))
 		startTile = getTileAtPosition(x1 + 100, y1);
-	if (startTile->getColide())
+	if (tileCheck(startTile))
 		startTile = getTileAtPosition(x1, y1 - 100);
-	if (startTile->getColide())
+	if (tileCheck(startTile))
 		startTile = getTileAtPosition(x1, y1 + 100);
 
-	// If there are no Tiles at the calculated positions don't continue.
-	if (startTile == nullptr || endTile == nullptr)
-		return;
-
 	// If the EndTile is Solid don't try to build a path.
-	if (endTile->getColide())
+	if (tileCheck(endTile))
 		return;
 
 	// Reset all Tiles.

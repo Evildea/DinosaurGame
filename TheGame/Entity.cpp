@@ -12,8 +12,9 @@ Entity::Entity()
 	m_head = new Head;
 	m_legs = new Legs;
 	m_target = { 0,0 };
-	m_behaviourManager->setAI(PredatorControlledAI, this);
+	m_behaviourManager->setAI(NoAI, this);
 	m_legs->addEntity(this);
+	m_tail->addEntity(this);
 }
 
 Entity::~Entity()
@@ -93,7 +94,7 @@ void Entity::setSelectedStatus(bool a_selectedStatus)
 	if (m_selectedStatus == true)
 		m_behaviourManager->setAI(UserControlledAI, this);
 	else
-		m_behaviourManager->setAI(PredatorControlledAI, this);
+		m_behaviourManager->setAI(m_dinosaurRole, this);
 }
 
 void Entity::setTailColour(float r, float g, float b)
@@ -104,6 +105,12 @@ void Entity::setTailColour(float r, float g, float b)
 void Entity::setTailSpotColour(float r, float g, float b)
 {
 	m_tail->setTailSpotColour(r, g, b);
+}
+
+void Entity::setSpeciesType(BehaviourType a_dinosaurRole)
+{
+	m_dinosaurRole = a_dinosaurRole;
+	m_behaviourManager->setAI(a_dinosaurRole, this);
 }
 
 bool Entity::getSelectedStatus()
