@@ -17,7 +17,7 @@ void Legs::update(M3<float> a_positionAndtransform, float a_radians)
 	m_position = a_positionAndtransform;
 
 	// Calculate the rotation speed based on the dinosaur's speed.
-	float distanceTravelled = m_owner->getVelocityLength() / (m_DINOSAURSPEED * 8);
+	float distanceTravelled = m_owner->getDistanceTravelled() / (m_DINOSAURSPEED * 8);
 
 	// Swing the legs left or right to create the illusion of movement.
 	if (m_walkingRotation == LEFTWARD)
@@ -45,9 +45,9 @@ void Legs::draw(aie::Renderer2D * a_renderer, V2<float> a_rotation)
 	a_renderer->drawSpriteTransformed3x3(m_sprite, (float*)m_position, m_sprite->getWidth(), m_sprite->getHeight(), 0.4f);
 }
 
-void Legs::addSprite(ResourceManager * a_resourceManager, char a_textureGameName[])
+void Legs::addSprite(ResourceManager * a_resourceManager, char a_spriteGameName[])
 {
-	m_sprite = a_resourceManager->getTexture(a_textureGameName);
+	m_sprite = a_resourceManager->getSprite(a_spriteGameName);
 }
 
 void Legs::addEntity(Entity * a_entity)

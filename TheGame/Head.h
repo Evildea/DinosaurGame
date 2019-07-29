@@ -1,5 +1,4 @@
 #pragma once
-#include "CRT.h"
 #include "Renderer2D.h"
 #include "Texture.h"
 #include "M3.h"
@@ -29,7 +28,7 @@ public:
 	void draw(aie::Renderer2D * a_renderer, V2<float> a_rotation);
 
 	// This function applies a sprite to the dinosaur's head.
-	void addSprite(ResourceManager* a_resourceManager, char a_textureGameName[]);
+	void addSprite(ResourceManager* a_resourceManager, char a_spriteGameName[]);
 
 	// This function enables the dinosaur's head to access the objectManager.
 	void addObjectManager(ObjectManager* a_objectManager);

@@ -2,15 +2,10 @@
 
 InputManager::InputManager()
 {
-	m_cameraPosition	= { 0, 0 };
-	m_startPoint		= { -10, -10 };
-	m_endPoint			= { -10, -10 };
-	m_selectType		= SINGLE_SELECT;
-}
-
-
-InputManager::~InputManager()
-{
+	m_cameraPosition			= { 0, 0 };
+	m_selectionStartPoint		= { -10, -10 };
+	m_selectionEndPoint			= { -10, -10 };
+	m_selectionType				= SINGLE_SELECT;
 }
 
 void InputManager::update()
@@ -19,28 +14,28 @@ void InputManager::update()
 	bool found;
 
 	// Select a specific object on the map.
-	if (input->wasMouseButtonPressed(aie::INPUT_MOUSE_BUTTON_LEFT) && m_selectType == SINGLE_SELECT)
+	if (input->wasMouseButtonPressed(aie::INPUT_MOUSE_BUTTON_LEFT) && m_selectionType == SINGLE_SELECT)
 	{
 		found = m_objectManager->setSelected(input->getMouseX() + m_cameraPosition.x - 30, input->getMouseY() + m_cameraPosition.y - 30, input->getMouseX() + m_cameraPosition.x + 30, input->getMouseY() + m_cameraPosition.y + 30);
 		if (found == false)
-			m_selectType = GROUP_SELECT;
+			m_selectionType = GROUP_SELECT;
 	}
 
 	// Select a range of objects on the map.
-	if (m_selectType == GROUP_SELECT)
+	if (m_selectionType == GROUP_SELECT)
 	{
 		// Set the end point of the bounding box to be the current mouse position.
-		m_endPoint = { input->getMouseX() + m_cameraPosition.x, input->getMouseY() + m_cameraPosition.y };
+		m_selectionEndPoint = { input->getMouseX() + m_cameraPosition.x, input->getMouseY() + m_cameraPosition.y };
 
 		// LEFT CLICK: Set the start point of the bounding box.
 		if (input->wasMouseButtonPressed(aie::INPUT_MOUSE_BUTTON_LEFT))
-			m_startPoint = { input->getMouseX() + m_cameraPosition.x, input->getMouseY() + m_cameraPosition.y };
+			m_selectionStartPoint = { input->getMouseX() + m_cameraPosition.x, input->getMouseY() + m_cameraPosition.y };
 
 		// RIGHT CLICK: Select all objects within the bounding box area.
 		if (input->wasMouseButtonReleased(aie::INPUT_MOUSE_BUTTON_LEFT))
 		{
-			m_objectManager->setSelected(m_startPoint.x, m_startPoint.y, m_endPoint.x, m_endPoint.y);
-			m_selectType = SINGLE_SELECT;
+			m_objectManager->setSelected(m_selectionStartPoint.x, m_selectionStartPoint.y, m_selectionEndPoint.x, m_selectionEndPoint.y);
+			m_selectionType = SINGLE_SELECT;
 		}
 	}
 
@@ -65,13 +60,13 @@ void InputManager::draw(aie::Renderer2D * a_renderer)
 	a_renderer->setCameraPos(m_cameraPosition.x, m_cameraPosition.y);
 
 	// This draws a box showing the selection area.
-	if (m_selectType == GROUP_SELECT)
+	if (m_selectionType == GROUP_SELECT)
 	{
 		a_renderer->setRenderColour(1, 0, 0);
-		a_renderer->drawLine(m_startPoint.x, m_startPoint.y, m_endPoint.x, m_startPoint.y);
-		a_renderer->drawLine(m_startPoint.x, m_startPoint.y, m_startPoint.x, m_endPoint.y);
-		a_renderer->drawLine(m_startPoint.x, m_endPoint.y, m_endPoint.x, m_endPoint.y);
-		a_renderer->drawLine(m_endPoint.x, m_startPoint.y, m_endPoint.x, m_endPoint.y);
+		a_renderer->drawLine(m_selectionStartPoint.x, m_selectionStartPoint.y, m_selectionEndPoint.x, m_selectionStartPoint.y);
+		a_renderer->drawLine(m_selectionStartPoint.x, m_selectionStartPoint.y, m_selectionStartPoint.x, m_selectionEndPoint.y);
+		a_renderer->drawLine(m_selectionStartPoint.x, m_selectionEndPoint.y, m_selectionEndPoint.x, m_selectionEndPoint.y);
+		a_renderer->drawLine(m_selectionEndPoint.x, m_selectionStartPoint.y, m_selectionEndPoint.x, m_selectionEndPoint.y);
 	}
 }
 

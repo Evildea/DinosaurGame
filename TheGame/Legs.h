@@ -27,7 +27,7 @@ public:
 	void draw(aie::Renderer2D * a_renderer, V2<float> a_rotation);
 
 	// This function applies a sprite to the dinosaur's legs.
-	void addSprite(ResourceManager* a_resourceManager, char a_textureGameName[]);
+	void addSprite(ResourceManager* a_resourceManager, char a_spriteGameName[]);
 
 	// This functions tells the legs whose body they belong to.
 	void addEntity(Entity* a_entity);

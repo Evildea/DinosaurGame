@@ -1,17 +1,24 @@
-﻿  TheGameApp.cpp
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(35): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(36): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\thegameapp.cpp(7): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  main.cpp
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(34): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(35): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(36): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s191281\documents\github\dinosaurgame\thegame\entity.h(40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-  TheGame.vcxproj -> C:\Users\s191281\Documents\GitHub\DinosaurGame\temp\TheGame\Win32\Debug\TheGame.exe
+﻿  Entity.cpp
+e:\github\dinosaurgame\thegame\entity.h(39): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+e:\github\dinosaurgame\thegame\entity.h(40): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+e:\github\dinosaurgame\thegame\entity.h(41): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+e:\github\dinosaurgame\thegame\entity.h(44): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\github\dinosaurgame\thegame\entity.h(45): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\github\dinosaurgame\thegame\entity.h(46): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+e:\github\dinosaurgame\thegame\entity.cpp(12): warning C4305: '=': truncation from 'double' to 'float'
+e:\github\dinosaurgame\thegame\entity.cpp(71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+e:\github\dinosaurgame\thegame\entity.cpp(74): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+e:\github\dinosaurgame\thegame\entity.cpp(77): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+e:\github\dinosaurgame\thegame\entity.cpp(132): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\dinosaurgame\thegame\entity.cpp(133): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+e:\github\dinosaurgame\thegame\entity.cpp(138): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+e:\github\dinosaurgame\thegame\entity.cpp(142): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TheGame.vcxproj -> E:\Github\DinosaurGame\temp\TheGame\Win32\Debug\TheGame.exe

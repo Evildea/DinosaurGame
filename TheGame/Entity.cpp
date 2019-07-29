@@ -5,11 +5,11 @@ Entity::Entity()
 	m_health = 100;
 	m_thirst = 100;
 	m_hunger = 100;
+	m_tail = DBG_NEW Tail;
+	m_head = DBG_NEW Head;
+	m_legs = DBG_NEW Legs;
 
 	m_depth = 0.35;
-	m_tail = new Tail;
-	m_head = new Head;
-	m_legs = new Legs;
 	m_target = { 0,0 };
 	m_behaviourManager->setAI(NoAI, this);
 	m_legs->addEntity(this);
@@ -29,8 +29,8 @@ void Entity::customUpdate(float deltaTime)
 	m_previousPosition = m_position;
 
 	// Automatically increase the dinosaur's hunger and thirst overtime.
-	m_hunger -= (g_SUFFER * deltaTime);
-	m_thirst -= (g_SUFFER * deltaTime);
+	m_hunger -= g_SUFFER * deltaTime;
+	m_thirst -= g_SUFFER * deltaTime;
 
 	// If the dinosaur's hunger or thirst is too low start inflicting damage to the dinosaur.
 	if (m_hunger <= 1 || m_thirst <= 1)
@@ -46,7 +46,7 @@ void Entity::customUpdate(float deltaTime)
 	V2<float> dif = m_position - m_previousPosition;
 	if (dif.getMagnitude() > 0.05)
 		m_transform.rotate(m_previousPosition, m_position, false);
-	m_previousDif = dif;
+	m_previousDifference = dif;
 
 	// Update the head and tail.
 	m_tail->update(m_position);
@@ -59,9 +59,6 @@ void Entity::customUpdate(float deltaTime)
 
 void Entity::customDraw(aie::Renderer2D * a_renderer)
 {
-	// Draw the behavioural target (if in debug mode)
-	m_behaviourManager->draw(a_renderer);
-
 	// Draw the head, tail and legs.
 	m_legs->draw(a_renderer, m_transform.yAxis);
 	m_tail->draw(a_renderer, m_transform.yAxis);
@@ -83,12 +80,12 @@ void Entity::customDraw(aie::Renderer2D * a_renderer)
 
 }
 
-void Entity::setSelectedStatus(bool a_selectedStatus)
+void Entity::setMouseSelected(bool a_selectedStatus)
 {
 	m_selectedStatus = a_selectedStatus;
 
 	// If the object is selected change it's behaviour type to user controlled.
-	if (m_selectedStatus == true)
+	if (m_selectedStatus)
 		m_behaviourManager->setAI(UserControlledAI, this);
 	else
 		m_behaviourManager->setAI(m_dinosaurRole, this);
@@ -110,7 +107,7 @@ void Entity::setSpeciesType(BehaviourType a_dinosaurRole)
 	m_behaviourManager->setAI(a_dinosaurRole, this);
 }
 
-bool Entity::getSelectedStatus()
+bool Entity::getMouseSelected()
 {
 	return m_selectedStatus;
 }
@@ -125,7 +122,7 @@ Legs * Entity::getLegs()
 	return m_legs;
 }
 
-float Entity::getVelocityLength()
+float Entity::getDistanceTravelled()
 {
 	return m_velocity.getMagnitude();
 }

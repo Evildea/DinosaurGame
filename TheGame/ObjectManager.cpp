@@ -76,14 +76,14 @@ void ObjectManager::addResourceManager(ResourceManager * a_resourceManager)
 	m_resourceManager = a_resourceManager;
 }
 
-void ObjectManager::addEntity(char a_textureGameName[], char a_scarTextureGameName[], BehaviourType a_dinosaurRole, float x, float y, float r, float g, float b, float r1, float g1, float b1)
+void ObjectManager::addEntity(char a_spriteGameName[], char a_scarSpriteGameName[], BehaviourType a_dinosaurRole, float x, float y, float r, float g, float b, float r1, float g1, float b1)
 {
 	// Add a new Entity (dinosaur) to the game.
-	m_EntityList.push_back(new Entity);
+	m_EntityList.push_back(DBG_NEW Entity);
 	Entity* temp = m_EntityList.back();
 
-	temp->addSprite(m_resourceManager, a_textureGameName);
-	temp->addScarSprite(m_resourceManager, a_scarTextureGameName);
+	temp->addSprite(m_resourceManager, a_spriteGameName);
+	temp->addScarSprite(m_resourceManager, a_scarSpriteGameName);
 	temp->setSpeciesType(a_dinosaurRole);
 	temp->setPosition(x, y);
 	temp->setTailColour(r, g, b);
@@ -91,23 +91,23 @@ void ObjectManager::addEntity(char a_textureGameName[], char a_scarTextureGameNa
 	temp->setObjectManager(this);
 }
 
-void ObjectManager::addTree(char a_textureGameName[], float x, float y)
+void ObjectManager::addTree(char a_spriteGameName[], float x, float y)
 {
 	// Add a new Tree to the game.
-	m_TreeList.push_back(new Tree);
+	m_TreeList.push_back(DBG_NEW Tree);
 	Tree* temp = m_TreeList.back();
 
-	temp->addSprite(m_resourceManager, a_textureGameName);
+	temp->addSprite(m_resourceManager, a_spriteGameName);
 	temp->setPosition(x, y);
 }
 
-void ObjectManager::addTile(CollisionType a_collision, char a_textureGameName[], float x, float y)
+void ObjectManager::addTile(CollisionType a_collision, char a_spriteGameName[], float x, float y)
 {
 	// Add a new Tile to the game.
-	m_TileList.push_back(new Tile);
+	m_TileList.push_back(DBG_NEW Tile);
 	Tile* temp = m_TileList.back();
 
-	temp->addSprite(m_resourceManager, a_textureGameName);
+	temp->addSprite(m_resourceManager, a_spriteGameName);
 	temp->setPosition(x, y);
 	temp->setCollisionType(a_collision);
 
@@ -116,32 +116,32 @@ void ObjectManager::addTile(CollisionType a_collision, char a_textureGameName[],
 		m_waterTileList.push_back(temp);
 }
 
-void ObjectManager::addBones(char a_textureGameName[], float x, float y)
+void ObjectManager::addBones(char a_spriteGameName[], float x, float y)
 {
 	// Add a set of Footsteps to the game.
-	m_BonesList.push_back(new Bones);
+	m_BonesList.push_back(DBG_NEW Bones);
 	Bones* temp = m_BonesList.back();
 
-	temp->addSprite(m_resourceManager, a_textureGameName);
+	temp->addSprite(m_resourceManager, a_spriteGameName);
 	temp->setPosition(x, y);
 }
 
-void ObjectManager::addHead(char a_textureGameName[])
+void ObjectManager::addHead(char a_spriteGameName[])
 {
 	// Add a Head to the Entity.
-	m_EntityList.back()->getHead()->addSprite(m_resourceManager, a_textureGameName);
+	m_EntityList.back()->getHead()->addSprite(m_resourceManager, a_spriteGameName);
 }
 
-void ObjectManager::addLegs(char a_textureGameName[])
+void ObjectManager::addLegs(char a_spriteGameName[])
 {
 	// Add a pair of legs to the Entity.
-	m_EntityList.back()->getLegs()->addSprite(m_resourceManager, a_textureGameName);
+	m_EntityList.back()->getLegs()->addSprite(m_resourceManager, a_spriteGameName);
 }
 
-void ObjectManager::addLeaves(char a_textureGameName[])
+void ObjectManager::addFoliage(char a_spriteGameName[])
 {
 	// Add leaves to the Tree.
-	m_TreeList.back()->addLeaves(m_resourceManager, a_textureGameName);
+	m_TreeList.back()->addFoliage(m_resourceManager, a_spriteGameName);
 }
 
 bool ObjectManager::setSelected(float x1, float y1, float x2, float y2)
@@ -153,10 +153,10 @@ bool ObjectManager::setSelected(float x1, float y1, float x2, float y2)
 		if (i->getX() > x1 && i->getX() < x2 || i->getX() < x1 && i->getX() > x2)
 		{
 			if (i->getY() > y1 && i->getY() < y2 || i->getY() < y1 && i->getY() > y2)
-				i->setSelectedStatus(true), found = true;
+				i->setMouseSelected(true), found = true;
 		}
 		else
-			i->setSelectedStatus(false);
+			i->setMouseSelected(false);
 	}
 	return found;
 

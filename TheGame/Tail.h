@@ -1,5 +1,4 @@
 #pragma once
-#include "CRT.h"
 #include "Renderer2D.h"
 #include "Global.h"
 #include "V2.h"

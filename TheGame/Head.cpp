@@ -56,9 +56,9 @@ void Head::draw(aie::Renderer2D * a_renderer, V2<float> a_rotation)
 	m_target->draw(a_renderer, 1, 0, 0);
 }
 
-void Head::addSprite(ResourceManager * a_resourceManager, char a_textureGameName[])
+void Head::addSprite(ResourceManager * a_resourceManager, char a_spriteGameName[])
 {
-	m_sprite = a_resourceManager->getTexture(a_textureGameName);
+	m_sprite = a_resourceManager->getSprite(a_spriteGameName);
 }
 
 void Head::addObjectManager(ObjectManager * a_objectManager)

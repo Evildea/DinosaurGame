@@ -1,60 +1,60 @@
 #include "ResourceManager.h"
 
-
-
 ResourceManager::ResourceManager()
 {
 }
 
-
 ResourceManager::~ResourceManager()
 {
-	for (resource* i : m_textureList)
+	for (resource* i : m_spriteList)
+	{
+		delete i->m_spritePath;
 		delete i;
+	}
 }
 
-void ResourceManager::addTexture(char m_textureFilePath[], char m_textureGameName[])
+void ResourceManager::addSprite(char a_spriteFilePath[], char a_spriteGameName[])
 {
-	if (strlen(m_textureGameName) < 150) {
-		if (strlen(m_textureFilePath) != 0 && strlen(m_textureGameName) != 0)
+	if (strlen(a_spriteGameName) < 150) {
+		if (strlen(a_spriteFilePath) != 0 && strlen(a_spriteGameName) != 0)
 		{
-			m_textureList.push_back(DBG_NEW resource);
-			for (int i = 0; i < strlen(m_textureGameName)+1; i++)
-				m_textureList.back()->m_textureGameName[i] = m_textureGameName[i];
-			m_textureList.back()->m_texturePath = DBG_NEW aie::Texture(m_textureFilePath);
+			m_spriteList.push_back(DBG_NEW resource);
+			for (int i = 0; i < strlen(a_spriteGameName)+1; i++)
+				m_spriteList.back()->m_spriteGameName[i] = a_spriteGameName[i];
+			m_spriteList.back()->m_spritePath = DBG_NEW aie::Texture(a_spriteFilePath);
 		}
 		else
-			assert(false && "Either the m_textureFilePath or m_textureGameName is empty.");
+			assert(false && "Either the m_spriteFilePath or m_spriteGameName is empty.");
 	}
 	else
-		assert(false && "The m_textureGameName is too long. It must be less than 150 characters");
+		assert(false && "The m_spriteGameName is too long. It must be less than 150 characters");
 	
 }
 
-aie::Texture * ResourceManager::getTexture(char m_textureGameName[])
+aie::Texture * ResourceManager::getSprite(char a_spriteGameName[])
 {
 	aie::Texture* t = nullptr;
 	bool found = false;
 
-	if (strlen(m_textureGameName) < 150) {
-		for (resource* i : m_textureList)
+	if (strlen(a_spriteGameName) < 150) {
+		for (resource* i : m_spriteList)
 		{
-			for (int j = 0; j < strlen(i->m_textureGameName) + 1; j++)
+			for (int j = 0; j < strlen(i->m_spriteGameName) + 1; j++)
 			{
 				found = false;
-				if (i->m_textureGameName[j] == m_textureGameName[j])
+				if (i->m_spriteGameName[j] == a_spriteGameName[j])
 					found = true;
 				else
 					break;
 			}
 			if (found == true)
 			{
-				t = i->m_texturePath;
+				t = i->m_spritePath;
 				break;
 			}
 		}
 		return t;
 	}
 	else
-		assert(false && "The m_textureGameName is too long. It must be less than 150 characters");
+		assert(false && "The m_spriteGameName is too long. It must be less than 150 characters");
 }

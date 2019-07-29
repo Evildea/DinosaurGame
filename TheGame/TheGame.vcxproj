@@ -167,8 +167,6 @@
     <ClCompile Include="AbstractAI.cpp" />
     <ClCompile Include="AbstractObject.cpp" />
     <ClCompile Include="BehaviourManager.cpp" />
-    <ClCompile Include="BodyManager.cpp" />
-    <ClCompile Include="Clamp.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Bones.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -193,8 +191,6 @@
     <ClInclude Include="AbstractAI.h" />
     <ClInclude Include="AbstractObject.h" />
     <ClInclude Include="BehaviourManager.h" />
-    <ClInclude Include="BodyManager.h" />
-    <ClInclude Include="Clamp.h" />
     <ClInclude Include="CRT.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Bones.h" />

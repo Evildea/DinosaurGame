@@ -9,6 +9,7 @@ BehaviourManager::BehaviourManager()
 
 BehaviourManager::~BehaviourManager()
 {
+	delete m_behaviourType;
 }
 
 void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
@@ -21,11 +22,11 @@ void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
 			if (m_behaviourType->GetAIType() != 'u')
 			{
 				delete m_behaviourType;
-				m_behaviourType = new UserControlled;
+				m_behaviourType = DBG_NEW UserControlled;
 			}
 		}
 		else
-			m_behaviourType = new UserControlled;
+			m_behaviourType = DBG_NEW UserControlled;
 	}
 
 	if (a_behaviour == PredatorControlledAI)
@@ -35,11 +36,11 @@ void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
 			if (m_behaviourType->GetAIType() != 'p')
 			{
 				delete m_behaviourType;
-				m_behaviourType = new PredatorAI;
+				m_behaviourType = DBG_NEW PredatorAI;
 			}
 		}
 		else
-			m_behaviourType = new PredatorAI;
+			m_behaviourType = DBG_NEW PredatorAI;
 	}
 
 	if (a_behaviour == HerbiControlledAI)
@@ -49,11 +50,11 @@ void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
 			if (m_behaviourType->GetAIType() != 'h')
 			{
 				delete m_behaviourType;
-				m_behaviourType = new HerbiAI;
+				m_behaviourType = DBG_NEW HerbiAI;
 			}
 		}
 		else
-			m_behaviourType = new HerbiAI;
+			m_behaviourType = DBG_NEW HerbiAI;
 	}
 
 	if (m_behaviourType != nullptr)
@@ -64,10 +65,4 @@ void BehaviourManager::update(float deltaTime, V2<int> a_cameraPosition)
 {
 	if (m_behaviourType != nullptr)
 		m_behaviourType->update(deltaTime, a_cameraPosition);
-}
-
-void BehaviourManager::draw(aie::Renderer2D * a_renderer)
-{
-	//if (m_behaviourType != nullptr)
-	//	m_behaviourType->draw(a_renderer);
 }

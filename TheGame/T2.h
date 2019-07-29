@@ -6,7 +6,7 @@
 #include "M3.h"
 
 // The function of the T2 is to provide a target in 2D space to look towards or travel towards.
-// This is primarily used to ensure that head and body rotations are smooth.
+// This is primarily used to ensure that head of the dinosaur rotates smoothly towards its target.
 
 class T2
 {

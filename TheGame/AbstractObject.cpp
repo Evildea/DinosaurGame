@@ -53,14 +53,14 @@ void AbstractObject::draw(aie::Renderer2D * a_renderer)
 	customDraw(a_renderer);
 }
 
-void AbstractObject::addSprite(ResourceManager * a_resourceManager, char a_textureGameName[])
+void AbstractObject::addSprite(ResourceManager * a_resourceManager, char a_spriteGameName[])
 {
-	m_sprite = a_resourceManager->getTexture(a_textureGameName);
+	m_sprite = a_resourceManager->getSprite(a_spriteGameName);
 }
 
-void AbstractObject::addScarSprite(ResourceManager * a_resourceManager, char a_textureGameName[])
+void AbstractObject::addScarSprite(ResourceManager * a_resourceManager, char a_spriteGameName[])
 {
-	m_scarSprite = a_resourceManager->getTexture(a_textureGameName);
+	m_scarSprite = a_resourceManager->getSprite(a_spriteGameName);
 }
 
 void AbstractObject::setPosition(float x, float y)

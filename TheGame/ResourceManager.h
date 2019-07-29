@@ -9,20 +9,22 @@ struct resource;
 class ResourceManager
 {
 private:
-	std::vector<resource*> m_textureList;
+	std::vector<resource*> m_spriteList; // This represents a list of sprites.
 
 public:
 	ResourceManager();
 	~ResourceManager();
 
-	void addTexture(char m_textureFilePath[], char m_textureGameName[]);
-	aie::Texture* getTexture(char m_textureGameName[]);
+	// These functions add or get a sprite based on the sprite's name.
+	void addSprite(char a_spriteFilePath[], char a_spriteGameName[]);
+	aie::Texture* getSprite(char a_spriteGameName[]);
 
 };
 
+// This represents an individual resource that holds a sprite and its name.
 struct resource
 {
-	aie::Texture*	m_texturePath;
-	char			m_textureGameName[150];
+	aie::Texture*	m_spritePath;
+	char			m_spriteGameName[150];
 };
 

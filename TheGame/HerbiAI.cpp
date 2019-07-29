@@ -16,8 +16,6 @@ HerbiAI::~HerbiAI()
 {
 }
 
-#include <iostream>
-
 void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 {
 	int targetX, targetY;

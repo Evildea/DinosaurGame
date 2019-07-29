@@ -30,15 +30,15 @@ public:
 	void addResourceManager(ResourceManager * a_resourceManager);
 
 	// These functions allow the GameManager to add different object types to the game.
-	void addEntity(char a_textureGameName[], char a_scarTextureGameName[], BehaviourType a_dinosaurRole, float x, float y, float r, float g, float b, float r1, float g1, float b1);
-	void addTree(char a_textureGameName[], float x, float y);
-	void addTile(CollisionType a_collision, char a_textureGameName[], float x, float y);
-	void addBones(char a_textureGameName[], float x, float y);
+	void addEntity(char a_spriteGameName[], char a_scarSpriteGameName[], BehaviourType a_dinosaurRole, float x, float y, float r, float g, float b, float r1, float g1, float b1);
+	void addTree(char a_spriteGameName[], float x, float y);
+	void addTile(CollisionType a_collision, char a_spriteGameName[], float x, float y);
+	void addBones(char a_spriteGameName[], float x, float y);
 
 	// These functions allow the GameManager to add components to the different objects in the game.
-	void addHead(char a_textureGameName[]);
-	void addLegs(char a_textureGameName[]);
-	void addLeaves(char a_textureGameName[]);
+	void addHead(char a_spriteGameName[]);
+	void addLegs(char a_spriteGameName[]);
+	void addFoliage(char a_spriteGameName[]);
 
 	// This function selects all objects within a specific area.
 	bool setSelected(float x1, float y1, float x2, float y2);

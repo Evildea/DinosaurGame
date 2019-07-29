@@ -20,7 +20,7 @@ Tail::~Tail()
 void Tail::update(V2<float> a_position)
 {
 	// Update the tail's spinal position if the body of the dinosaur is moving.
-	float distanceTravelled = m_owner->getVelocityLength();
+	float distanceTravelled = m_owner->getDistanceTravelled();
 	if (distanceTravelled > 3.0)
 	{
 		for (int i = 0; i < m_TAILLENGTH; i++)
