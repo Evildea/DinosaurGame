@@ -18,10 +18,10 @@ void ResourceManager::addTexture(char m_textureFilePath[], char m_textureGameNam
 	if (strlen(m_textureGameName) < 150) {
 		if (strlen(m_textureFilePath) != 0 && strlen(m_textureGameName) != 0)
 		{
-			m_textureList.push_back(new resource);
+			m_textureList.push_back(DBG_NEW resource);
 			for (int i = 0; i < strlen(m_textureGameName)+1; i++)
 				m_textureList.back()->m_textureGameName[i] = m_textureGameName[i];
-			m_textureList.back()->m_texturePath = new aie::Texture(m_textureFilePath);
+			m_textureList.back()->m_texturePath = DBG_NEW aie::Texture(m_textureFilePath);
 		}
 		else
 			assert(false && "Either the m_textureFilePath or m_textureGameName is empty.");

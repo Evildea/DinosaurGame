@@ -8,17 +8,16 @@ TheGameApp::TheGameApp() {
 }
 
 TheGameApp::~TheGameApp() {
-
 }
 
 bool TheGameApp::startup() {
 	
-	m_2dRenderer = new aie::Renderer2D();
+	m_2dRenderer = DBG_NEW aie::Renderer2D();
 
 	// TODO: remember to change this when redistributing a build!
 	// the following path would be used instead: "./font/consolas.ttf"
-	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
-	m_gameManager = new GameManager;
+	m_font = DBG_NEW aie::Font("../bin/font/consolas.ttf", 32);
+	m_gameManager = DBG_NEW GameManager;
 
 	return true;
 }

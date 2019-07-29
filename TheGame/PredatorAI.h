@@ -4,14 +4,21 @@
 class PredatorAI : public AbstractAI
 {
 private:
-	enum States {SLEEP, PICKTARGET, SEEKRANDOMTARGET, SEEKWATER, DRINK, SEEKTREE, EAT};
+	// These states represent the different states of the AI Finite State Machine.
+	enum States {SLEEP, PICKTARGET, SEEKRANDOMTARGET, SEEKWATER, DRINK, SEEKPREY, EAT};
 	States m_state;
+
+	// This timer is used for creating delays between actions within the Finite State Machine.
 	float timer;
+
+	// This represents the herbivore (prey) of the predator.
+	AbstractObject* m_herbi;
 
 public:
 	PredatorAI();
 	~PredatorAI();
 
+	// This function manages the AI Finite State Machine.
 	virtual void update(float deltaTime, V2<int> a_cameraPosition);
 
 };

@@ -2,6 +2,7 @@
 #include "Texture.h"
 #include <vector>
 #include <assert.h>
+#include "CRT.h"
 
 struct resource;
 

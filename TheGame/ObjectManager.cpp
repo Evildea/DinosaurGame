@@ -328,6 +328,8 @@ Entity * ObjectManager::getClosestEntity(BehaviourType a_dinosaurRole, float x, 
 
 void ObjectManager::CreateRoute(float x1, float y1, float x2, float y2, std::vector<Tile*> &a_list)
 {
+	// Clear the current path.
+	a_list.clear();
 
 	// Calculate the StartTile and EndTile based on the X / Y inputs.
 	Tile * startTile = getTileAtPosition(x1, y1);
@@ -344,8 +346,8 @@ void ObjectManager::CreateRoute(float x1, float y1, float x2, float y2, std::vec
 	if (tileCheck(startTile))
 		startTile = getTileAtPosition(x1, y1 + 100);
 
-	// If the EndTile is Solid don't try to build a path.
-	if (tileCheck(endTile))
+	// If the StartTile or EndTile is Solid don't try to build a path.
+	if (tileCheck(endTile) || tileCheck(startTile))
 		return;
 
 	// Reset all Tiles.
@@ -415,7 +417,8 @@ void ObjectManager::CreateRoute(float x1, float y1, float x2, float y2, std::vec
 			break;
 		}
 	}
-	currentNode->setPathActive(true);
+	a_list.push_back(startTile);
+	startTile->setPathActive(true);
 
 	// Reverse the path.
 	std::reverse(a_list.begin(), a_list.end());

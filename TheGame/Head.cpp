@@ -4,12 +4,12 @@
 
 Head::Head()
 {
-	m_target = new T2;
-	//m_setPositionOnce = true;
+	m_target = DBG_NEW T2;
 }
 
 Head::~Head()
 {
+	delete m_target;
 }
 
 void Head::update(M3<float> a_positionAndtransform, float a_radians, V2<float> a_target, float deltaTime)

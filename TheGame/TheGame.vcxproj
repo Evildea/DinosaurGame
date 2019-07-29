@@ -195,6 +195,7 @@
     <ClInclude Include="BehaviourManager.h" />
     <ClInclude Include="BodyManager.h" />
     <ClInclude Include="Clamp.h" />
+    <ClInclude Include="CRT.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Bones.h" />
     <ClInclude Include="GameManager.h" />

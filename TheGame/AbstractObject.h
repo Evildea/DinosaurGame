@@ -3,6 +3,7 @@
 #include "ResourceManager.h"
 #include "Renderer2D.h"
 #include "Texture.h"
+#include "CRT.h"
 #include "M3.h"
 #include "V2.h"
 
@@ -11,17 +12,15 @@ class ObjectManager;
 class AbstractObject
 {
 protected:
-	ObjectManager*				m_objectManager;
-	BehaviourManager*			m_behaviourManager;
-	aie::Texture*				m_sprite;
-	aie::Texture*				m_scarSprite;
-	M3<float>					m_transform;
-	V2<float>					m_position;
-	V2<float>					m_velocity;
-	V2<float>					m_target;
-	bool						m_selectedStatus;
-	float						m_depth;
-	float						m_health;			// Represents health. It is used by Entity class but needs to be accessed by the AbstractObject.
+	ObjectManager*		m_objectManager;					// This represents the ObjectManager and allows the object to access it.
+	BehaviourManager*	m_behaviourManager;					// This represents the BehaviourManager and allows the object to access it.
+	aie::Texture*		m_sprite;							// This represents the sprite of the object.
+	aie::Texture*		m_scarSprite;						// This represents the sprite of the object when damaged.
+	M3<float>			m_transform;						// This represents the rotation of the object.
+	V2<float>			m_position, m_velocity, m_target;	// This represents the position, velocity and eyesight target of the object.
+	bool				m_selectedStatus;					// This represents whether the object has been selected by the mouse.
+	float				m_depth;							// This represents the depth to draw the object at.
+	float				m_health;							// This represents the health of the object.
 
 public:
 	AbstractObject();

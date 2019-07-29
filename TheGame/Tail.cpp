@@ -4,10 +4,10 @@
 Tail::Tail()
 {
 	r = g = b = 1.0f;
-	m_tailSplit = m_TAILLENGTH * 0.1;
+	m_tailSpotDistance = m_TAILLENGTH * 0.1;
 	for (int i = 0; i < m_TAILLENGTH; i++)
 	{
-		m_tailList[i].radius = (1 + i) / m_tailSplit;
+		m_tailList[i].radius = (1 + i) / m_tailSpotDistance;
 		if (m_tailList[i].radius > 8.0)
 			m_tailList[i].radius = 8.0;
 	}
@@ -57,8 +57,8 @@ void Tail::draw(aie::Renderer2D * a_renderer, V2<float> a_rotation)
 	// Draw the tail spots (skin).
 	a_renderer->setRenderColour(r1, g1, b1);
 	a_renderer->drawCircle(tailSpot.x + m_tailList[m_TAILLENGTH].x, tailSpot.y + m_tailList[m_TAILLENGTH].y, 2.1, 0.3);
-	for (int i = 1; i < m_TAILLENGTH / m_tailSplit; i++)
-		a_renderer->drawCircle(tailPosition.x + m_tailList[i * m_tailSplit].x, tailPosition.y + m_tailList[i * m_tailSplit].y, (m_tailList[i * m_tailSplit].radius / 4 >= 1.5) ? m_tailList[i * m_tailSplit].radius / 4 : 1.5);
+	for (int i = 1; i < m_TAILLENGTH / m_tailSpotDistance; i++)
+		a_renderer->drawCircle(tailPosition.x + m_tailList[i * m_tailSpotDistance].x, tailPosition.y + m_tailList[i * m_tailSpotDistance].y, (m_tailList[i * m_tailSpotDistance].radius / 4 >= 1.5) ? m_tailList[i * m_tailSpotDistance].radius / 4 : 1.5);
 
 	// Reset the render colour.
 	a_renderer->setRenderColour(1, 1, 1);

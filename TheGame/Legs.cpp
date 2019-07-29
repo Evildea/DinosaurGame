@@ -16,8 +16,10 @@ void Legs::update(M3<float> a_positionAndtransform, float a_radians)
 	// Update the position and rotation of the legs.
 	m_position = a_positionAndtransform;
 
-	float distanceTravelled = m_owner->getVelocityLength() / (m_DINOSAURSPEED * 4);
+	// Calculate the rotation speed based on the dinosaur's speed.
+	float distanceTravelled = m_owner->getVelocityLength() / (m_DINOSAURSPEED * 8);
 
+	// Swing the legs left or right to create the illusion of movement.
 	if (m_walkingRotation == LEFTWARD)
 	{
 		m_offset -= distanceTravelled;
@@ -32,6 +34,7 @@ void Legs::update(M3<float> a_positionAndtransform, float a_radians)
 			m_walkingRotation = LEFTWARD;
 	}
 
+	// Rotate the legs.
 	m_position.rotate(a_radians + m_offset);
 
 }

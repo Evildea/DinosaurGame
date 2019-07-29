@@ -3,7 +3,7 @@
 
 AbstractObject::AbstractObject()
 {
-	m_behaviourManager	= new BehaviourManager;
+	m_behaviourManager	= DBG_NEW BehaviourManager;
 	m_selectedStatus	= false;
 	m_velocity			= { 0.0f,0.0f };
 	m_depth				= 0.0f;
@@ -43,7 +43,7 @@ void AbstractObject::draw(aie::Renderer2D * a_renderer)
 		a_renderer->drawSpriteTransformed3x3(m_sprite, (float*)t, m_sprite->getWidth(), m_sprite->getHeight(), m_depth);
 	else
 	{
-		if (m_health > 30)
+		if (m_health > 40)
 			a_renderer->drawSpriteTransformed3x3(m_sprite, (float*)t, m_sprite->getWidth(), m_sprite->getHeight(), m_depth);
 		else
 			a_renderer->drawSpriteTransformed3x3(m_scarSprite, (float*)t, m_sprite->getWidth(), m_sprite->getHeight(), m_depth);

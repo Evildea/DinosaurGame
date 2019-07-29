@@ -10,7 +10,7 @@ private:
 	Tail*			m_tail;
 	Head*			m_head;
 	Legs*			m_legs;
-	float			m_thirst, m_hunger, m_tiredness;
+	float			m_thirst, m_hunger;
 	V2<float>		m_previousPosition;
 	V2<float>		m_previousDif;
 	BehaviourType	m_dinosaurRole;
@@ -36,8 +36,8 @@ public:
 	virtual int getHunger() override { return m_hunger; };
 	virtual BehaviourType getBehaviourType() override { return m_dinosaurRole; };
 	virtual void setHealth(int a_health) override { m_health = (a_health < 100) ? a_health : 100; }
-	virtual void setThirst(int a_thirst) override { m_thirst = a_thirst; }
-	virtual void setHunger(int a_hunger) override { m_hunger = a_hunger; }
+	virtual void setThirst(int a_thirst) override { m_thirst = (a_thirst < 100) ? a_thirst : 100; }
+	virtual void setHunger(int a_hunger) override { m_hunger = (a_hunger < 100) ? a_hunger : 100; }
 	float getVelocityLength();
 
 	// This draws a health, thirst, hunger or tiredness bar to the screen.

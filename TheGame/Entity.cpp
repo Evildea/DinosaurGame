@@ -5,7 +5,6 @@ Entity::Entity()
 	m_health = 100;
 	m_thirst = 100;
 	m_hunger = 100;
-	m_tiredness = 100;
 
 	m_depth = 0.35;
 	m_tail = new Tail;
@@ -30,8 +29,8 @@ void Entity::customUpdate(float deltaTime)
 	m_previousPosition = m_position;
 
 	// Automatically increase the dinosaur's hunger and thirst overtime.
-	m_hunger -= ((1 + (rand() % 1)) * deltaTime);
-	m_thirst -= ((.5 + (rand() % 2)) * deltaTime);
+	m_hunger -= (g_SUFFER * deltaTime);
+	m_thirst -= (g_SUFFER * deltaTime);
 
 	// If the dinosaur's hunger or thirst is too low start inflicting damage to the dinosaur.
 	if (m_hunger <= 1 || m_thirst <= 1)
@@ -80,8 +79,6 @@ void Entity::customDraw(aie::Renderer2D * a_renderer)
 		// Draw the hunger bar.
 		DrawBar(a_renderer, 80, m_hunger, 1, 0, 0);
 
-		// Draw the tiredness bar.
-		DrawBar(a_renderer, 95, m_tiredness, .5, .5, .5);
 	}
 
 }

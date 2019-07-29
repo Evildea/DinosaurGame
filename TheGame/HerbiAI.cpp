@@ -16,6 +16,8 @@ HerbiAI::~HerbiAI()
 {
 }
 
+#include <iostream>
+
 void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 {
 	int targetX, targetY;
@@ -31,7 +33,6 @@ void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 	{
 		targetX = m_owner->getX();
 		targetY = m_owner->getY();
-
 		Entity* targetPredator = m_owner->getObjectManager()->getClosestEntity(PredatorControlledAI, targetX, targetY, dynamic_cast<Entity*>(m_owner));
 
 		if (targetPredator != nullptr)
@@ -42,21 +43,13 @@ void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 			{
 				// Set Flee direction to the oposite direction of the predator's velocity
 				V2<float> fleeDirection = { (float)targetX - (targetPredator->getX() - targetPredator->getVelocity().x), (float)targetY - (targetPredator->getY() - targetPredator->getVelocity().x) };
-				fleeDirection = fleeDirection.getNormalised() * 100;
+				fleeDirection = fleeDirection.getNormalised() * 300;
 				fleeDirection = fleeDirection + m_owner->getPosition();
 
-				// Ensure the oposite direction is on the map.
-				if (fleeDirection.x > g_MAPWIDTH * 100)
-					fleeDirection.x = g_MAPWIDTH;
-				if (fleeDirection.y > g_MAPHEIGHT * 100)
-					fleeDirection.y = g_MAPHEIGHT;
+				// Ensure the Flee direction is on the map.
+				ClampCoordinates(fleeDirection.x, fleeDirection.y);
 
-				if (fleeDirection.x < 0)
-					fleeDirection.x = 0;
-				if (fleeDirection.y < 0)
-					fleeDirection.y = 0;
-
-				// Create a path to a Tile 300 pixels in the opposite direction to the predator.
+				// Create a path to the closest Tile in the Flee direction.
 				targetTile = m_owner->getObjectManager()->getTileAtPosition(fleeDirection.x, fleeDirection.y);
 				if (targetTile != nullptr)
 				{
@@ -78,16 +71,13 @@ void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 		timer = 0.0f;
 
 		// If thirsty pick a water hole near the target.
-		if (m_owner->getThirst() < 30 && pickedTarget == false)
+		if (m_owner->getThirst() < 60 && pickedTarget == false)
 		{
 			targetX = m_owner->getX();
 			targetY = m_owner->getY();
+			ClampCoordinates(targetX, targetY);
 
-			if (targetX > g_MAPWIDTH * 100)
-				targetX = g_MAPWIDTH;
-			if (targetY > g_MAPHEIGHT * 100)
-				targetY = g_MAPHEIGHT;
-
+			// Create a path to the closest Water Tile.
 			targetTile = m_owner->getObjectManager()->getWaterTile(targetX, targetY);
 			if (!targetTile->getColide())
 			{
@@ -98,18 +88,14 @@ void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 		}
 
 		// If hungry pick a random tree near the target.
-		if (m_owner->getHunger() < 30 && pickedTarget == false)
+		if (m_owner->getHunger() < 60 && pickedTarget == false)
 		{
 			targetX = m_owner->getX();
 			targetY = m_owner->getY();
+			ClampCoordinates(targetX, targetY);
 
-			if (targetX > g_MAPWIDTH * 100)
-				targetX = g_MAPWIDTH;
-			if (targetY > g_MAPHEIGHT * 100)
-				targetY = g_MAPHEIGHT;
-
+			// Create a path to the closest Tile under a Tree.
 			targetTile = m_owner->getObjectManager()->getTree(targetX, targetY);
-
 			if (!targetTile->getColide())
 			{
 				CreatePath(m_path, targetTile->getX(), targetTile->getY());
@@ -123,6 +109,8 @@ void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 		{
 			targetX = (rand() % g_MAPWIDTH) * 100;
 			targetY = (rand() % g_MAPHEIGHT) * 100;
+
+			// Create a path to the randomly selected Tile.
 			targetTile = m_owner->getObjectManager()->getTileAtPosition(targetX, targetY);
 			if (!targetTile->getColide())
 			{
@@ -136,44 +124,47 @@ void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 	// Seek Random Target state.
 	if (m_state == SEEKRANDOMTARGET)
 	{
-		if (m_path.size() != 0)
-			FollowPath(m_path, deltaTime);
+		if (m_path.size() == 1)
+			m_state = PICKTARGET;
 		else
+			FollowPath(m_path, deltaTime);
+
+		if (m_owner->getThirst() < 30 || m_owner->getHunger() < 30)
 			m_state = PICKTARGET;
 	}
 
 	// Flee target state.
 	if (m_state == FLEETARGET)
 	{
-		if (m_path.size() != 0)
-			FollowPath(m_path, deltaTime);
-		else
+		if (m_path.size() == 1)
 			m_state = PICKTARGET;
+		else
+			FollowPath(m_path, deltaTime);
 	}
 
 	// Seek Water state.
 	if (m_state == SEEKWATER)
 	{
-		if (m_path.size() != 0)
-			FollowPath(m_path, deltaTime);
-		else
+		if (m_path.size() == 1)
 			m_state = DRINK;
+		else
+			FollowPath(m_path, deltaTime);
 	}
 
 	// Seek Tree state.
 	if (m_state == SEEKTREE)
 	{
-		if (m_path.size() != 0)
-			FollowPath(m_path, deltaTime);
-		else
+		if (m_path.size() == 1)
 			m_state = EAT;
+		else
+			FollowPath(m_path, deltaTime);
 	}
 
 	// Drink Water state.
 	if (m_state == DRINK)
 	{
-		m_owner->setVelocity(0, 0);
 		timer += deltaTime;
+		FollowPath(m_path, deltaTime);
 
 		if (timer > 10)
 		{
@@ -186,8 +177,8 @@ void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 	// Eat state.
 	if (m_state == EAT)
 	{
-		m_owner->setVelocity(0, 0);
 		timer += deltaTime;
+		FollowPath(m_path, deltaTime);
 
 		if (timer > 10)
 		{
@@ -196,8 +187,4 @@ void HerbiAI::update(float deltaTime, V2<int> a_cameraPosition)
 			m_state = PICKTARGET;
 		}
 	}
-
-	// Create a new Path if at the end of the Path.
-	if (m_path.size() == 1)
-		m_state = PICKTARGET;
 }

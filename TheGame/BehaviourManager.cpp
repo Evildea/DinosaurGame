@@ -68,6 +68,6 @@ void BehaviourManager::update(float deltaTime, V2<int> a_cameraPosition)
 
 void BehaviourManager::draw(aie::Renderer2D * a_renderer)
 {
-	if (m_behaviourType != nullptr)
-		m_behaviourType->draw(a_renderer);
+	//if (m_behaviourType != nullptr)
+	//	m_behaviourType->draw(a_renderer);
 }
