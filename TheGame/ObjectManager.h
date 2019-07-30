@@ -12,10 +12,10 @@
 class ObjectManager
 {
 private:
-	std::vector<Entity*>	m_EntityList;		// List of Dinosaurs in the game.
-	std::vector<Tree*>		m_TreeList;			// List of Trees in the game.
-	std::vector<Bones*>		m_BonesList;		// List of Bones in the game.
-	std::vector<Tile*>		m_TileList;			// List of Tiles in the game.
+	std::vector<Entity*>	m_entityList;		// List of Dinosaurs in the game.
+	std::vector<Tree*>		m_treeList;			// List of Trees in the game.
+	std::vector<Bones*>		m_bonesList;		// List of Bones in the game.
+	std::vector<Tile*>		m_tileList;			// List of Tiles in the game.
 	std::vector<Tile*>		m_waterTileList;	// List of Water tiles in the game.
 	ResourceManager*		m_resourceManager;	// Pointer to the ResourceManager so the ObjectManager can access resources.
 
@@ -52,13 +52,13 @@ public:
 	bool tileCheck(Tile* a_target);				// Returns True if a Tile is a NULLPTR or SOLID.
 
 	// This function generates edge links between all the tiles. This is for Dijkstra's algorithm.
-	void LinkTiles();
+	void linkTiles();
 
-	// This function is used by LinkTiles to check if a link between two tiles should exist.
+	// This function is used by linkTiles to check if a link between two tiles should exist.
 	bool checkTileColide(Tile * a_tile, V2<float> a_position, float x, float y);
 
 	// These functions generate routes between tiles. This is Dijkstra's Algorithm.
-	void CreateRoute(float x1, float y1, float x2, float y2, std::vector<Tile*> &a_list);
+	void createDijkstraRoute(float x1, float y1, float x2, float y2, std::vector<Tile*> &a_list);
 	bool checkList(std::vector<Tile*> a_list, Tile* a_target);
 
 };

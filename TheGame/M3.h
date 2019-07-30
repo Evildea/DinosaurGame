@@ -19,6 +19,7 @@ public:
 	M3(V2<T> xAxis, V2<T> yAxis, V2<T> zAxis) : xAxis(xAxis), yAxis(yAxis), zAxis(zAxis) {};
 	~M3() {};
 
+	// Operator to convert the Matrix3 into a float.
 	operator float*()
 	{
 		data[0] = xAxis.x;
@@ -34,22 +35,31 @@ public:
 		return data;
 	};
 
+	// Equals operator.
 	void operator=(const M3 rhs) { xAxis = rhs.xAxis, yAxis = rhs.yAxis, zAxis = rhs.zAxis; };
+
+	// Addition operator. Takes in Matrix3.
 	M3<T> operator+(const M3 rhs) const { return { xAxis + rhs.xAxis, yAxis + rhs.yAxis, zAxis + rhs.zAxis }; };
+
+	// Addition operator. Takes in a Vector2.
 	M3<T> operator+(const V2<T> rhs) const { return { xAxis, yAxis, zAxis + rhs }; };
 
-	void rotate(V2<T> a_XYPosition, V2<T> a_targetXYPosition, bool a_relative)
+	// Transformation function. Takes in the current and target position then calculates the transform of the Matrix based on that.
+	void rotate(V2<T> a_currentPosition, V2<T> a_targetPosition, bool a_relative)
 	{
-		radians = (a_relative == false) ? -atan2f(a_targetXYPosition.x - a_XYPosition.x, a_targetXYPosition.y - a_XYPosition.y) : -atan2f(a_XYPosition.x, a_XYPosition.y);
+		radians = (a_relative == false) ? -atan2f(a_targetPosition.x - a_currentPosition.x, a_targetPosition.y - a_currentPosition.y) : -atan2f(a_currentPosition.x, a_currentPosition.y);
 		xAxis = { cosf(radians), sinf(radians) };
 		yAxis = { -sinf(radians), cosf(radians) };
 	};
+
+	// Transformation function. Takes in the radians and then calculates the transform based on that.
 	void rotate(float a_radian)
 	{
 		xAxis = { cosf(a_radian), sinf(a_radian) };
 		yAxis = { -sinf(a_radian), cosf(a_radian) };
 	}
 
+	// This returns the current rotation.
 	float getRadians() { return radians; };
 
 };

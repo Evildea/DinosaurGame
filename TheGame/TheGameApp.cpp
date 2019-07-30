@@ -16,7 +16,6 @@ bool TheGameApp::startup() {
 
 	// TODO: remember to change this when redistributing a build!
 	// the following path would be used instead: "./font/consolas.ttf"
-	m_font = DBG_NEW aie::Font("../bin/font/consolas.ttf", 32);
 	m_gameManager = DBG_NEW GameManager;
 
 	return true;
@@ -24,7 +23,6 @@ bool TheGameApp::startup() {
 
 void TheGameApp::shutdown() {
 
-	delete m_font;
 	delete m_2dRenderer;
 	delete m_gameManager;
 }

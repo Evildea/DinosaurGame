@@ -19,7 +19,7 @@ void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
 	{
 		if (m_behaviourType != nullptr)
 		{
-			if (m_behaviourType->GetAIType() != 'u')
+			if (m_behaviourType->getAIType() != 'u')
 			{
 				delete m_behaviourType;
 				m_behaviourType = DBG_NEW UserControlled;
@@ -33,7 +33,7 @@ void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
 	{
 		if (m_behaviourType != nullptr)
 		{
-			if (m_behaviourType->GetAIType() != 'p')
+			if (m_behaviourType->getAIType() != 'p')
 			{
 				delete m_behaviourType;
 				m_behaviourType = DBG_NEW PredatorAI;
@@ -47,7 +47,7 @@ void BehaviourManager::setAI(BehaviourType a_behaviour, AbstractObject* a_owner)
 	{
 		if (m_behaviourType != nullptr)
 		{
-			if (m_behaviourType->GetAIType() != 'h')
+			if (m_behaviourType->getAIType() != 'h')
 			{
 				delete m_behaviourType;
 				m_behaviourType = DBG_NEW HerbiAI;

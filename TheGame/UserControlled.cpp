@@ -27,15 +27,15 @@ void UserControlled::update(float deltaTime, V2<int> a_cameraPosition)
 		targetTile = m_owner->getObjectManager()->getTileAtPosition(randomX, randomY);
 
 		if (!targetTile->getColide())
-			m_targetSet = CreatePath(m_path, targetTile->getX(), targetTile->getY());
+			m_targetSet = createPath(m_path, targetTile->getX(), targetTile->getY());
 	}
 
 	// Create a path from the dinosaur's current position to its target.
 	if (input->wasMouseButtonReleased(aie::INPUT_MOUSE_BUTTON_RIGHT))
-		m_targetSet = CreatePath(m_path, input->getMouseX() + a_cameraPosition.x, input->getMouseY() + a_cameraPosition.y);
+		m_targetSet = createPath(m_path, input->getMouseX() + a_cameraPosition.x, input->getMouseY() + a_cameraPosition.y);
 
 	// Follow the path.
 	if (m_targetSet)
-		FollowPath(m_path, deltaTime);
+		followPath(m_path, deltaTime);
 	
 }

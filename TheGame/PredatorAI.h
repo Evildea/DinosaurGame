@@ -5,7 +5,7 @@ class PredatorAI : public AbstractAI
 {
 private:
 	// These states represent the different states of the AI Finite State Machine.
-	enum States {SLEEP, PICKTARGET, SEEKRANDOMTARGET, SEEKWATER, DRINK, SEEKPREY, EAT};
+	enum States {START, SEEK_WATER, SEEK_RANDOM, HUNT_HERBI, DRINK, SLEEP};
 	States m_state;
 
 	// This timer is used for creating delays between actions within the Finite State Machine.

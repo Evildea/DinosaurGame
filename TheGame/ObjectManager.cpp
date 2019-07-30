@@ -8,27 +8,27 @@ ObjectManager::ObjectManager()
 ObjectManager::~ObjectManager()
 {
 	// Delete all Tiles, Entities, Trees and Footsteps.
-	for (Bones* i : m_BonesList)
+	for (Bones* i : m_bonesList)
 		delete i;
-	for (Entity* i : m_EntityList)
+	for (Entity* i : m_entityList)
 		delete i;
-	for (Tree* i : m_TreeList)
+	for (Tree* i : m_treeList)
 		delete i;
-	for (Tile* i : m_TileList)
+	for (Tile* i : m_tileList)
 		delete i;
 }
 
 void ObjectManager::update(float deltaTime, V2<int> a_cameraPosition)
 {
 	// Update all Tiles, Entities, Trees and Footsteps.
-	for (Tile* i : m_TileList)
+	for (Tile* i : m_tileList)
 		i->update(deltaTime, a_cameraPosition);
 	
-	for (Entity* i : m_EntityList)
+	for (Entity* i : m_entityList)
 	{
-		if (i->getHealth() <= 1)
+		if (i->getHealth() <= 5)
 		{
-			m_EntityList.erase(std::find(m_EntityList.begin(), m_EntityList.end(), i));
+			m_entityList.erase(std::find(m_entityList.begin(), m_entityList.end(), i));
 			addBones("bones", i->getX(), i->getY());
 			delete i;
 		}
@@ -36,16 +36,16 @@ void ObjectManager::update(float deltaTime, V2<int> a_cameraPosition)
 			i->update(deltaTime, a_cameraPosition);
 	}
 
-	for (Tree* i : m_TreeList)
+	for (Tree* i : m_treeList)
 		i->update(deltaTime, a_cameraPosition), i->setTransparency(1);
 
-	for (Bones* i : m_BonesList)
+	for (Bones* i : m_bonesList)
 		i->update(deltaTime, a_cameraPosition);
 
 	// Update the transparency of the Trees based on the nearest dinosaur.
-	for (Tree* i : m_TreeList)
+	for (Tree* i : m_treeList)
 	{
-		for (Entity* j : m_EntityList)
+		for (Entity* j : m_entityList)
 		{
 			float distance = sqrt(pow(j->getX() - i->getX(), 2) + pow(j->getY() - i->getY(), 2));
 			if (distance < 100)
@@ -57,17 +57,29 @@ void ObjectManager::update(float deltaTime, V2<int> a_cameraPosition)
 
 void ObjectManager::draw(aie::Renderer2D * a_renderer)
 {
-	// Draw all Tiles, Entities, Trees and Footsteps.
-	for (Tile* i : m_TileList)
+	// Generate the Camera viewable area.
+	float camX, camY, camX2, camY2;
+	a_renderer->getCameraPos(camX, camY);
+	camX -= 100;
+	camY -= 100;
+	camX2 = camX + 1500;
+	camY2 = camY + 1000;
+
+	// Draw all Tiles, Entities, Trees and Bones within the cameras viewing range.
+	for (Tile* i : m_tileList)
+		if (i->getPosition().x > camX && i->getPosition().y > camY && i->getPosition().x < camX2 && i->getPosition().y < camY2)
 		i->draw(a_renderer);
 	
-	for (Entity* i : m_EntityList)
+	for (Entity* i : m_entityList)
+		if (i->getPosition().x > camX && i->getPosition().y > camY && i->getPosition().x < camX2 && i->getPosition().y < camY2)
 		i->draw(a_renderer);
 
-	for (Tree* i : m_TreeList)
+	for (Tree* i : m_treeList)
+		if (i->getPosition().x > camX && i->getPosition().y > camY && i->getPosition().x < camX2 && i->getPosition().y < camY2)
 		i->draw(a_renderer);
 
-	for (Bones* i : m_BonesList)
+	for (Bones* i : m_bonesList)
+		if (i->getPosition().x > camX && i->getPosition().y > camY && i->getPosition().x < camX2 && i->getPosition().y < camY2)
 		i->draw(a_renderer);
 }
 
@@ -79,8 +91,8 @@ void ObjectManager::addResourceManager(ResourceManager * a_resourceManager)
 void ObjectManager::addEntity(char a_spriteGameName[], char a_scarSpriteGameName[], BehaviourType a_dinosaurRole, float x, float y, float r, float g, float b, float r1, float g1, float b1)
 {
 	// Add a new Entity (dinosaur) to the game.
-	m_EntityList.push_back(DBG_NEW Entity);
-	Entity* temp = m_EntityList.back();
+	m_entityList.push_back(DBG_NEW Entity);
+	Entity* temp = m_entityList.back();
 
 	temp->addSprite(m_resourceManager, a_spriteGameName);
 	temp->addScarSprite(m_resourceManager, a_scarSpriteGameName);
@@ -94,8 +106,8 @@ void ObjectManager::addEntity(char a_spriteGameName[], char a_scarSpriteGameName
 void ObjectManager::addTree(char a_spriteGameName[], float x, float y)
 {
 	// Add a new Tree to the game.
-	m_TreeList.push_back(DBG_NEW Tree);
-	Tree* temp = m_TreeList.back();
+	m_treeList.push_back(DBG_NEW Tree);
+	Tree* temp = m_treeList.back();
 
 	temp->addSprite(m_resourceManager, a_spriteGameName);
 	temp->setPosition(x, y);
@@ -104,8 +116,8 @@ void ObjectManager::addTree(char a_spriteGameName[], float x, float y)
 void ObjectManager::addTile(CollisionType a_collision, char a_spriteGameName[], float x, float y)
 {
 	// Add a new Tile to the game.
-	m_TileList.push_back(DBG_NEW Tile);
-	Tile* temp = m_TileList.back();
+	m_tileList.push_back(DBG_NEW Tile);
+	Tile* temp = m_tileList.back();
 
 	temp->addSprite(m_resourceManager, a_spriteGameName);
 	temp->setPosition(x, y);
@@ -119,8 +131,8 @@ void ObjectManager::addTile(CollisionType a_collision, char a_spriteGameName[], 
 void ObjectManager::addBones(char a_spriteGameName[], float x, float y)
 {
 	// Add a set of Footsteps to the game.
-	m_BonesList.push_back(DBG_NEW Bones);
-	Bones* temp = m_BonesList.back();
+	m_bonesList.push_back(DBG_NEW Bones);
+	Bones* temp = m_bonesList.back();
 
 	temp->addSprite(m_resourceManager, a_spriteGameName);
 	temp->setPosition(x, y);
@@ -129,25 +141,25 @@ void ObjectManager::addBones(char a_spriteGameName[], float x, float y)
 void ObjectManager::addHead(char a_spriteGameName[])
 {
 	// Add a Head to the Entity.
-	m_EntityList.back()->getHead()->addSprite(m_resourceManager, a_spriteGameName);
+	m_entityList.back()->getHead()->addSprite(m_resourceManager, a_spriteGameName);
 }
 
 void ObjectManager::addLegs(char a_spriteGameName[])
 {
 	// Add a pair of legs to the Entity.
-	m_EntityList.back()->getLegs()->addSprite(m_resourceManager, a_spriteGameName);
+	m_entityList.back()->getLegs()->addSprite(m_resourceManager, a_spriteGameName);
 }
 
 void ObjectManager::addFoliage(char a_spriteGameName[])
 {
 	// Add leaves to the Tree.
-	m_TreeList.back()->addFoliage(m_resourceManager, a_spriteGameName);
+	m_treeList.back()->addFoliage(m_resourceManager, a_spriteGameName);
 }
 
 bool ObjectManager::setSelected(float x1, float y1, float x2, float y2)
 {
 	bool found = false;
-	for (Entity* i : m_EntityList)
+	for (Entity* i : m_entityList)
 	{
 		// Set the object to selected if it is within the coordinates specified.
 		if (i->getX() > x1 && i->getX() < x2 || i->getX() < x1 && i->getX() > x2)
@@ -162,16 +174,16 @@ bool ObjectManager::setSelected(float x1, float y1, float x2, float y2)
 
 }
 
-void ObjectManager::LinkTiles()
+void ObjectManager::linkTiles()
 {
-	for (Tile* i : m_TileList)
+	for (Tile* i : m_tileList)
 	{
 		// Set the position to the (I)'s position.
 		V2<float>	parentPosition = i->getPosition();
 		Tile*		parentTile = i;
 
 		if (parentTile->getColide() == false) {
-			for (Tile * j : m_TileList)
+			for (Tile * j : m_tileList)
 			{
 				if (j != parentTile)
 				{
@@ -225,7 +237,7 @@ bool ObjectManager::checkTileColide(Tile * a_tile, V2<float> a_position, float x
 Tile * ObjectManager::getTileAtPosition(float x, float y)
 {
 	Tile * result = nullptr;
-	for (Tile* i : m_TileList)
+	for (Tile* i : m_tileList)
 	{
 		V2<float> pos = i->getPosition();
 
@@ -276,7 +288,7 @@ Tile * ObjectManager::getTree(float x, float y)
 	Tile * temp = nullptr;
 	Tile * result = nullptr;
 
-	for (Tree* i : m_TreeList)
+	for (Tree* i : m_treeList)
 	{
 		V2<float> pos = i->getPosition();
 		V2<float> dif = pos - target;
@@ -308,7 +320,7 @@ Entity * ObjectManager::getClosestEntity(BehaviourType a_dinosaurRole, float x, 
 
 	Entity * result = nullptr;
 
-	for (Entity* i : m_EntityList)
+	for (Entity* i : m_entityList)
 	{
 		if (i != a_self && i->getBehaviourType() == a_dinosaurRole)
 		{
@@ -326,7 +338,7 @@ Entity * ObjectManager::getClosestEntity(BehaviourType a_dinosaurRole, float x, 
 
 }
 
-void ObjectManager::CreateRoute(float x1, float y1, float x2, float y2, std::vector<Tile*> &a_list)
+void ObjectManager::createDijkstraRoute(float x1, float y1, float x2, float y2, std::vector<Tile*> &a_list)
 {
 	// Clear the current path.
 	a_list.clear();
@@ -351,7 +363,7 @@ void ObjectManager::CreateRoute(float x1, float y1, float x2, float y2, std::vec
 		return;
 
 	// Reset all Tiles.
-	for (Tile* i : m_TileList)
+	for (Tile* i : m_tileList)
 	{
 		i->setGScore(1000, nullptr);
 		i->setPathActive(false);

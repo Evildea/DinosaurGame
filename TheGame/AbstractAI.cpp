@@ -14,10 +14,10 @@ AbstractAI::~AbstractAI()
 {
 }
 
-bool AbstractAI::CreatePath(std::vector<Tile*> &a_path, float a_targetX, float a_targetY)
+bool AbstractAI::createPath(std::vector<Tile*> &a_path, float a_targetX, float a_targetY)
 {
 	// Generate a route from the current position to the target position.
-	m_owner->getObjectManager()->CreateRoute(m_owner->getX(), m_owner->getY(), a_targetX, a_targetY, a_path);
+	m_owner->getObjectManager()->createDijkstraRoute(m_owner->getX(), m_owner->getY(), a_targetX, a_targetY, a_path);
 	
 	// Check if a valid path has been created.
 	if (a_path.size() != 0)
@@ -26,7 +26,7 @@ bool AbstractAI::CreatePath(std::vector<Tile*> &a_path, float a_targetX, float a
 		return false;
 }
 
-void AbstractAI::FollowPath(std::vector<Tile*> &a_path, float deltaTime)
+void AbstractAI::followPath(std::vector<Tile*> &a_path, float deltaTime)
 {
 	V2<float> TargetPosition;
 
@@ -35,7 +35,7 @@ void AbstractAI::FollowPath(std::vector<Tile*> &a_path, float deltaTime)
 	V2<float> dif = TargetPosition - m_owner->getPosition();
 
 	// If the dinosaur is within range of the first target, then point towards the second target.
-	if (dif.getMagnitude() < 20 && a_path.size() != 1)
+	if (dif.getMagnitude() < 35 && a_path.size() != 1)
 		a_path.erase(a_path.begin());
 	TargetPosition = a_path[0]->getPosition();
 
@@ -63,7 +63,7 @@ void AbstractAI::FollowPath(std::vector<Tile*> &a_path, float deltaTime)
 	if (m_path.size() == 1 && distance < m_DINOSAURSLOWINGRADIUS)
 	{
 		sum = distance / m_DINOSAURSLOWINGRADIUS;
-		if (sum < 0.95) { sum = 0.0f; }
+		if (sum < 0.9) { sum = 0.0f; }
 	}
 	if (m_path.size() > 1 && distance < m_DINOSAURSLOWINGRADIUS)
 		sum = distance / m_DINOSAURSLOWINGRADIUS;
@@ -78,7 +78,7 @@ void AbstractAI::FollowPath(std::vector<Tile*> &a_path, float deltaTime)
 	m_owner->setVelocity(velocity.x, velocity.y);
 }
 
-void AbstractAI::ClampCoordinates(float & x, float & y)
+void AbstractAI::clampPosition(float & x, float & y)
 {
 	if (x > g_MAPWIDTH * 100)
 		x = g_MAPWIDTH;
@@ -91,7 +91,7 @@ void AbstractAI::ClampCoordinates(float & x, float & y)
 		y = 0;
 }
 
-void AbstractAI::ClampCoordinates(int & x, int & y)
+void AbstractAI::clampPosition(int & x, int & y)
 {
 	if (x > g_MAPWIDTH * 100)
 		x = g_MAPWIDTH;
@@ -104,7 +104,7 @@ void AbstractAI::ClampCoordinates(int & x, int & y)
 		y = 0;
 }
 
-char AbstractAI::GetAIType()
+char AbstractAI::getAIType()
 {
 	return m_type;
 }
