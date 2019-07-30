@@ -12,22 +12,22 @@ GameManager::GameManager()
 	m_inputManager->addObjectManager(m_objectManager);
 
 	// Generate the textures.
-	m_resourceManager->addSprite("./bin/textures/Bones.png",			"bones");
-	m_resourceManager->addSprite("./bin/textures/DinoBody.png",		"pred");
-	m_resourceManager->addSprite("./bin/textures/DinoBodyScar.png",	"predscar");
-	m_resourceManager->addSprite("./bin/textures/DinoHead.png",		"predhead");
-	m_resourceManager->addSprite("./bin/textures/DinoLegs.png",		"predlegs");
-	m_resourceManager->addSprite("./bin/textures/DinoBody2.png",		"herbi");
-	m_resourceManager->addSprite("./bin/textures/DinoBody2Scar.png",	"herbiscar");
-	m_resourceManager->addSprite("./bin/textures/DinoHead2.png",		"herbihead");
-	m_resourceManager->addSprite("./bin/textures/DinoLegs2.png",		"herbilegs");
-	m_resourceManager->addSprite("./bin/textures/Trunk.png",			"trunk");
-	m_resourceManager->addSprite("./bin/textures/Leaves.png",			"leaves");
-	m_resourceManager->addSprite("./bin/textures/Grass.png",			"grass");
-	m_resourceManager->addSprite("./bin/textures/Water.png",			"water");
-	m_resourceManager->addSprite("./bin/textures/Rock01.png",			"rock01");
-	m_resourceManager->addSprite("./bin/textures/Rock02.png",			"rock02");
-	m_resourceManager->addSprite("./bin/textures/Rock03.png",			"rock03");
+	m_resourceManager->addSprite("../bin/textures/Bones.png",			"bones");
+	m_resourceManager->addSprite("../bin/textures/DinoBody.png",		"pred");
+	m_resourceManager->addSprite("../bin/textures/DinoBodyScar.png",	"predscar");
+	m_resourceManager->addSprite("../bin/textures/DinoHead.png",		"predhead");
+	m_resourceManager->addSprite("../bin/textures/DinoLegs.png",		"predlegs");
+	m_resourceManager->addSprite("../bin/textures/DinoBody2.png",		"herbi");
+	m_resourceManager->addSprite("../bin/textures/DinoBody2Scar.png",	"herbiscar");
+	m_resourceManager->addSprite("../bin/textures/DinoHead2.png",		"herbihead");
+	m_resourceManager->addSprite("../bin/textures/DinoLegs2.png",		"herbilegs");
+	m_resourceManager->addSprite("../bin/textures/Trunk.png",			"trunk");
+	m_resourceManager->addSprite("../bin/textures/Leaves.png",			"leaves");
+	m_resourceManager->addSprite("../bin/textures/Grass.png",			"grass");
+	m_resourceManager->addSprite("../bin/textures/Water.png",			"water");
+	m_resourceManager->addSprite("../bin/textures/Rock01.png",			"rock01");
+	m_resourceManager->addSprite("../bin/textures/Rock02.png",			"rock02");
+	m_resourceManager->addSprite("../bin/textures/Rock03.png",			"rock03");
 
 
 	// Randomly generate all map tiles.
